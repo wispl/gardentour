@@ -81,11 +81,18 @@ object PlaceRepository {
         return places[name]!!
     }
 
-    fun get_random() : PlaceData {
+    fun filterByType(types: Set<PlaceType>) : List<PlaceData> {
+        if (types.isEmpty()) {
+            return allPlaces()
+        }
+        return allPlaces().filter { types.intersect(it.types).isNotEmpty() }
+    }
+
+    fun getRandom() : PlaceData {
         return places.values.elementAt(random.nextInt(places.size))
     }
 
-    fun places(): Collection<PlaceData> {
-        return places.values
+    fun allPlaces(): List<PlaceData> {
+        return places.values.toList()
     }
 }

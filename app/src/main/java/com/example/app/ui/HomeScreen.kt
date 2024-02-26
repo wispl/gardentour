@@ -10,7 +10,7 @@ import com.example.app.data.PlaceRepository
 
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier) {
-    val place = PlaceRepository.get_random();
+    val place = PlaceRepository.getRandom()
     Column(
         modifier = modifier
     ) {

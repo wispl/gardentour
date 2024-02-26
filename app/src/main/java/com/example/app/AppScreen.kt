@@ -56,7 +56,7 @@ fun AppScreen(navController: NavHostController = rememberNavController()) {
             modifier = Modifier.fillMaxSize().padding(innerPadding))
         {
             composable(route = ScreenType.Home.name) { HomeScreen(Modifier) }
-            composable(route = ScreenType.Places.name) { PlacesScreen(Modifier) }
+            composable(route = ScreenType.Places.name) { PlacesScreen() }
         }
     }
 }
