@@ -3,6 +3,7 @@ package com.example.app.data
 import com.example.app.R
 import java.util.Random
 
+/// TODO: Hilt Injection?
 object PlaceRepository {
     private val random = Random()
     private val places = mapOf(

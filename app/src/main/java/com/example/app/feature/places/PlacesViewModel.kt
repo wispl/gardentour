@@ -1,4 +1,4 @@
-package com.example.app.ui
+package com.example.app.feature.places
 
 import androidx.lifecycle.ViewModel
 import com.example.app.data.PlaceRepository
