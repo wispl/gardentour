@@ -23,17 +23,27 @@ fun ImageCard(
     modifier: Modifier = Modifier
 ) {
     Card(onClick = onClick, modifier = modifier.padding((12.dp))) {
-        Column(modifier = modifier.padding(12.dp)) {
-            Card(modifier = Modifier.height(150.dp).fillMaxWidth()) {
+        Column {
+            Box(modifier = Modifier.height(150.dp).fillMaxWidth()) {
                 Image(
                     painter = image,
                     contentDescription = null,
-                    contentScale = ContentScale.FillWidth,
-                    modifier = Modifier.fillMaxWidth()
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxWidth().height(150.dp)
                 )
             }
-            Text(text = title, style = typography.titleMedium, modifier = Modifier.padding(4.dp))
-            Text(text = description, style = typography.bodyMedium, maxLines =  4, overflow = TextOverflow.Ellipsis)
+            Box(modifier = Modifier.padding(18.dp)) {
+                Column {
+                    Text(text = title, style = typography.headlineSmall)
+                    Spacer(Modifier.height(8.dp))
+                    Text(
+                        text = description,
+                        style = typography.bodyMedium,
+                        maxLines = 4,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+            }
         }
     }
 }
