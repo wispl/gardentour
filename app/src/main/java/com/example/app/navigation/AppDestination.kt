@@ -10,6 +10,7 @@ import androidx.navigation.NavController
 import com.example.app.R
 import com.example.app.feature.home.HOME_ROUTE
 import com.example.app.feature.places.PLACES_ROUTE
+import com.example.app.feature.search.SEARCH_ROUTE
 
 enum class AppDestination(val text: Int, val icon: ImageVector) {
     Home(
@@ -34,7 +35,7 @@ fun NavController.navigateToDestination(destination: AppDestination) {
     when (destination) {
         AppDestination.Home -> navigate(HOME_ROUTE)
         AppDestination.Places -> navigate(PLACES_ROUTE)
-        AppDestination.Search -> TODO()
+        AppDestination.Search -> navigate(SEARCH_ROUTE)
         AppDestination.Saved -> TODO()
     }
 }

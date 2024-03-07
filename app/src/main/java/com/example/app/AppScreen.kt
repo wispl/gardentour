@@ -6,6 +6,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
@@ -24,7 +25,7 @@ fun AppBottomBar(navController: NavHostController, modifier: Modifier = Modifier
         AppDestination.entries.forEach {
             NavigationBarItem(
                 icon = { Icon(imageVector = it.icon, contentDescription = null) },
-                label = { it.text},
+                label = { Text(stringResource(it.text)) },
                 selected = (current.isSelected(it)),
                 onClick = { navController.navigateToDestination(it) },
             )

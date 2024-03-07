@@ -9,6 +9,7 @@ import com.example.app.feature.home.homeScreen
 import com.example.app.feature.placedetail.navigateToPlaceDetail
 import com.example.app.feature.placedetail.placeDetailScreen
 import com.example.app.feature.places.placesScreen
+import com.example.app.feature.search.searchScreen
 
 @Composable
 fun AppNavHost(
@@ -24,5 +25,6 @@ fun AppNavHost(
         homeScreen(navController::navigateToPlaceDetail)
         placesScreen(navController::navigateToPlaceDetail)
         placeDetailScreen()
+        searchScreen()
     }
 }
