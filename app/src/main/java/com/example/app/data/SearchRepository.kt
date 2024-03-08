@@ -3,7 +3,7 @@ package com.example.app.data
 object SearchRepository {
     // Soundex key mapped to names of places it matched
     // Each word of the place's name is encoded and merged together
-    private val soundexMap = PlaceRepository.allPlaces()
+    private val placesSoundexMap = PlaceRepository.allPlaces()
         .map { place -> place.name.split(" ")
             .map { soundexEncodeWord(it) to place.name }
         }
@@ -11,8 +11,11 @@ object SearchRepository {
         .groupBy({ it.first }, {it.second})
 
     fun search(str: String): List<PlaceData> {
-        assert(str.isNotEmpty())
-        return soundexEncode(str).map { soundexMap.getOrDefault(it, emptyList()) }
+        if (str.isEmpty()) {
+            return emptyList()
+        }
+        return soundexEncode(str)
+            .map { placesSoundexMap.getOrDefault(it, emptyList()) }
             .flatten()
             .map { PlaceRepository.get(it) }
     }
@@ -22,23 +25,24 @@ object SearchRepository {
         return str.split(" ").map { soundexEncodeWord(it) }
     }
 
-    private fun soundexEncodeWord(str : String): String {
-        assert(str.isNotEmpty())
+    private fun soundexEncodeWord(word: String): String {
+        assert(word.isNotEmpty())
+        println("Encoding $word")
 
-        var result: String = str.substring(0, 1)
-        var prev = str[0]
-        for (i in str.drop(1)) {
-            if (soundexShouldSkip(i)) {
-                prev = i
-                continue
-            }
+        val str = word.lowercase()
+        var result = ""
+        var prev = ' '
 
-            val encoded = soundexEncodeChar(i).toChar()
-            when (prev) {
-                'a', 'e', 'i', 'o', 'u' -> result += encoded
-                'w', 'h', 'y' -> if (encoded != result.last()) result += encoded
-                else -> if (encoded != result.last()) result += encoded
+        for (i in str) {
+            var mapping = soundexMap(i)
+            if (result.isEmpty()) {
+                result += mapping.uppercase()
+            } else if (mapping == '0' && mapping != prev) {
+                result += mapping
+            } else {
+                mapping = prev
             }
+            prev = mapping
         }
 
         if (result.length < 4) {
@@ -47,20 +51,21 @@ object SearchRepository {
             result = result.substring(0, 5)
         }
 
+        println("Encoded to $result")
         return result
     }
 
-    private fun soundexEncodeChar(c: Char): Int {
+    private fun soundexMap(c: Char): Char {
         return when (c) {
-            'b', 'f', 'p', 'v' -> 1
-            'c', 'g', 'j', 'k', 'q', 's', 'x', 'z' -> 2
-            'd', 't' -> 3
-            'l' -> 4
-            'm', 'n' -> 5
-            'r' -> 6
-            else -> throw IllegalStateException("Invalid Char in Soundex Encode")
+            'a', 'e', 'i', 'o', 'u' -> '0'
+            'b', 'f', 'p', 'v' -> '1'
+            'c', 'g', 'j', 'k', 'q', 's', 'x', 'z' -> '2'
+            'd', 't' -> '3'
+            'l' -> '4'
+            'm', 'n' -> '5'
+            'r' -> '6'
+            // w, h, y are handled here as well
+            else -> ' '
         }
     }
-
-    private fun soundexShouldSkip(c: Char) = c in setOf('a', 'e', 'i', 'o', 'u', 'y', 'h', 'w')
 }
