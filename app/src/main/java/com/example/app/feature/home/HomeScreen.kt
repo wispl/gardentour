@@ -28,7 +28,6 @@ private fun HomeScreen(onClick: (String) -> Unit) {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxSize()
         ) {
-            CenterAlignedTopAppBar( title = { Text("Garden Tour") } )
             Text(
                 "Check out these places",
                 style = Typography.titleMedium

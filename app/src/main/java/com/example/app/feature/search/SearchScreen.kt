@@ -22,6 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.example.app.ui.ImageCard
@@ -85,6 +86,10 @@ fun NavGraphBuilder.searchScreen(onPlaceClick: (String) -> Unit) {
     composable(route = SEARCH_ROUTE) {
         SearchScreen(onPlaceClick)
     }
+}
+
+fun NavController.navigateToSearch() {
+    navigate(SEARCH_ROUTE)
 }
 
 

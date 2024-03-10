@@ -9,7 +9,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -30,7 +29,6 @@ private fun PlacesScreen(onClick: (String) -> Unit, viewModel: PlacesViewModel =
     val scrollState = rememberScrollState()
 
     Column {
-        TopAppBar( title = { Text("Places") } )
         Row(
             modifier = Modifier.padding(8.dp).horizontalScroll(scrollState),
             horizontalArrangement = Arrangement.spacedBy(8.dp))

@@ -4,4 +4,6 @@
     <string name="places">Places</string>
     <string name="search">Search</string>
     <string name="saved">Saved</string>
+    <string name="garden_tour">Garden Tour</string>
+    <string name="cities">Cities</string>
 </resources>

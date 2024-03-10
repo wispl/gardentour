@@ -1,17 +1,22 @@
 package com.example.app
 
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.app.feature.home.HOME_ROUTE
+import com.example.app.feature.places.PLACES_ROUTE
+import com.example.app.feature.search.navigateToSearch
 import com.example.app.navigation.AppDestination
 import com.example.app.navigation.AppNavHost
 import com.example.app.navigation.navigateToDestination
@@ -33,12 +38,63 @@ fun AppBottomBar(navController: NavHostController, modifier: Modifier = Modifier
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun AppTopBar(
+    title: Int,
+    navIcon: ImageVector,
+    modifier: Modifier = Modifier,
+    onNavigationClick: () -> Unit,
+) {
+    CenterAlignedTopAppBar(
+        title = { Text(stringResource(title)) },
+        navigationIcon = {
+            IconButton(onClick = onNavigationClick) {
+                Icon(
+                    imageVector = navIcon,
+                    contentDescription = ""
+                )
+            }
+        },
+        modifier = modifier
+    )
+}
+
+@OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun AppScreen(navController: NavHostController = rememberNavController()) {
-    Scaffold(
-        bottomBar = { AppBottomBar(navController) },
-    ) {
-        innerPadding -> AppNavHost(navController, modifier = Modifier.fillMaxSize().padding(innerPadding))
+    val backStackEntry by navController.currentBackStackEntryAsState()
+    val current = backStackEntry?.destination
+    val destination = when(current?.route) {
+        HOME_ROUTE -> AppDestination.Home
+        PLACES_ROUTE -> AppDestination.Places
+        else -> null
+    }
+
+    Scaffold(bottomBar = { AppBottomBar(navController) }) { padding ->
+        Row(
+            Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .consumeWindowInsets(padding)
+                .windowInsetsPadding(
+                    WindowInsets.safeDrawing.only(
+                        WindowInsetsSides.Horizontal
+                    )
+                )
+        ) {
+            Column(Modifier.fillMaxSize()) {
+                if (destination != null) {
+                    AppTopBar(
+                        destination.title,
+                        Icons.Rounded.Search,
+                        onNavigationClick = { navController.navigateToSearch() }
+                    )
+                }
+
+                AppNavHost(navController)
+            }
+        }
     }
 }
 
