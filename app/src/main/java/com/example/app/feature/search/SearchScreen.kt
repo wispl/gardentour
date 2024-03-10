@@ -18,14 +18,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.app.ui.ImageCard
+import com.example.app.ui.PlaceCard
 
 
 const val SEARCH_ROUTE = "search"
@@ -42,12 +41,7 @@ private fun SearchScreen(
         SearchField( query ) { viewModel.onQueryChanged(it) }
         LazyColumn {
             items(searchResults) { place ->
-                ImageCard(
-                    place.name,
-                    painterResource(place.image),
-                    place.description,
-                    { onPlaceClick(place.name) }
-                )
+                PlaceCard(place, { onPlaceClick(place.name) } )
             }
         }
     }

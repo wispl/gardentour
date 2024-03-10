@@ -11,13 +11,12 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.app.ui.ImageCard
+import com.example.app.ui.PlaceCard
 
 const val PLACES_ROUTE = "places"
 
@@ -51,12 +50,7 @@ private fun PlacesScreen(onClick: (String) -> Unit, viewModel: PlacesViewModel =
 
         LazyColumn {
             items(places) {
-                place -> ImageCard(
-                    place.name,
-                    painterResource(place.image),
-                    place.description,
-                    { onClick(place.name) }
-                )
+                place -> PlaceCard(place = place, onClick = { onClick(place.name) })
             }
         }
     }
