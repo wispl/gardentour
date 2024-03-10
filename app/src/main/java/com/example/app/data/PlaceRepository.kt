@@ -12,7 +12,7 @@ object PlaceRepository {
             "Visit these beautiful and expansive pearly white beaches with mouth-dropping views. Across the various beaches, vacationers can swim, skimboard, surf, fish, kayak and play volleyball in designated areas. Lifeguards are on duty and many enjoy swimming in the cool waters during summer. At sunset or sunrise, the beaches and waves provide a majestic scenery complement with dolphin sightings.",
             R.drawable.capemay_beach,
             Address(251, "Beach Ave", "Cape May City"),
-            setOf(PlaceType.Beach),
+            setOf(PlaceType.Fun),
             url = "https://www.capemay.com/cape-may-beaches",
             price = "Prices vary by season"
         ),

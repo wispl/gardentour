@@ -3,9 +3,8 @@ package com.example.app.data
 import androidx.annotation.DrawableRes
 
 enum class PlaceType {
-    Beach,
+    Fun,
     Museum,
-    Entertainment,
     Shopping,
     Food,
     Landmark,
