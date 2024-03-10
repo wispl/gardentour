@@ -3,6 +3,8 @@ package com.example.app.feature.search
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -16,22 +18,37 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.example.app.ui.ImageCard
 
 
 const val SEARCH_ROUTE = "search"
 
 @Composable
-private fun SearchScreen(viewModel: SearchViewModel = viewModel()) {
+private fun SearchScreen(
+    onPlaceClick: (String) -> Unit,
+    viewModel: SearchViewModel = viewModel()
+) {
     val query by viewModel.searchQuery.collectAsStateWithLifecycle()
     val searchResults by viewModel.searchResults.collectAsStateWithLifecycle()
 
     Column {
         SearchField( query ) { viewModel.onQueryChanged(it) }
+        LazyColumn {
+            items(searchResults) { place ->
+                ImageCard(
+                    place.name,
+                    painterResource(place.image),
+                    place.description,
+                    { onPlaceClick(place.name) }
+                )
+            }
+        }
     }
 }
 
@@ -49,7 +66,7 @@ private fun SearchField(
             disabledIndicatorColor = Color.Transparent
         ),
         value = query,
-        onValueChange = { if ("\n" !in it) onQueryChanged(it) },
+        onValueChange = { onQueryChanged(it) },
         shape = RoundedCornerShape(32.dp),
         leadingIcon = { Icon(
             imageVector = Icons.Default.Search,
@@ -64,9 +81,9 @@ private fun SearchField(
     )
 }
 
-fun NavGraphBuilder.searchScreen() {
+fun NavGraphBuilder.searchScreen(onPlaceClick: (String) -> Unit) {
     composable(route = SEARCH_ROUTE) {
-        SearchScreen()
+        SearchScreen(onPlaceClick)
     }
 }
 

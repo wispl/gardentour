@@ -15,7 +15,7 @@ class SearchViewModel(private val savedStateHandle: SavedStateHandle) : ViewMode
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val searchResults: StateFlow<List<PlaceData>> = searchQuery
-        .mapLatest { SearchRepository.search(it) }
+        .flatMapLatest { flowOf(SearchRepository.search(it)) }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
