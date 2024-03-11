@@ -2,7 +2,7 @@ package com.example.app.feature.places
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.app.data.PlaceData
+import com.example.app.data.Place
 import com.example.app.data.PlaceRepository
 import com.example.app.data.PlaceType
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -13,7 +13,7 @@ class PlacesViewModel : ViewModel() {
     val activeFilters = _activeFilters.asStateFlow()
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val places: StateFlow<List<PlaceData>> = activeFilters
+    val places: StateFlow<List<Place>> = activeFilters
         .flatMapLatest { flowOf(PlaceRepository.filterByType(it)) }
         .stateIn(
             scope = viewModelScope,

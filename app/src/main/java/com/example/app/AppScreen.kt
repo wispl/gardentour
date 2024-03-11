@@ -14,6 +14,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.app.feature.cities.CITIES_ROUTE
 import com.example.app.feature.home.HOME_ROUTE
 import com.example.app.feature.places.PLACES_ROUTE
 import com.example.app.feature.search.navigateToSearch
@@ -60,7 +61,7 @@ fun AppTopBar(
     )
 }
 
-@OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun AppScreen(navController: NavHostController = rememberNavController()) {
     val backStackEntry by navController.currentBackStackEntryAsState()
@@ -68,6 +69,7 @@ fun AppScreen(navController: NavHostController = rememberNavController()) {
     val destination = when(current?.route) {
         HOME_ROUTE -> AppDestination.Home
         PLACES_ROUTE -> AppDestination.Places
+        CITIES_ROUTE -> AppDestination.Cities
         else -> null
     }
 

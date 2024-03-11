@@ -23,7 +23,7 @@ data class Address(
     val city: String
 )
 
-data class PlaceData(
+data class Place(
     val name: String,
     val description: String,
     @DrawableRes

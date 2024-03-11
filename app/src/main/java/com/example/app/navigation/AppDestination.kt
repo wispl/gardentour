@@ -5,6 +5,7 @@ import androidx.compose.material.icons.rounded.*
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavController
 import com.example.app.R
+import com.example.app.feature.cities.CITIES_ROUTE
 import com.example.app.feature.home.HOME_ROUTE
 import com.example.app.feature.places.PLACES_ROUTE
 
@@ -39,7 +40,7 @@ fun NavController.navigateToDestination(destination: AppDestination) {
     when (destination) {
         AppDestination.Home -> navigate(HOME_ROUTE)
         AppDestination.Places -> navigate(PLACES_ROUTE)
-        AppDestination.Cities -> TODO()
+        AppDestination.Cities -> navigate(CITIES_ROUTE)
         AppDestination.Saved -> TODO()
     }
 }

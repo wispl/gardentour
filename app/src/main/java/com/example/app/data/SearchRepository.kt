@@ -8,7 +8,7 @@ object SearchRepository {
         .flatten()
         .groupBy({ it.first }, {it.second})
 
-    fun search(str: String): List<PlaceData> {
+    fun search(str: String): List<Place> {
         if (str.isEmpty()) {
             return emptyList()
         }

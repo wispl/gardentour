@@ -13,13 +13,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.example.app.data.PlaceData
+import com.example.app.data.Place
 import com.example.app.data.PlaceType
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PlaceCard(
-    place: PlaceData,
+    place: Place,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {

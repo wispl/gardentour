@@ -2,13 +2,13 @@ package com.example.app.feature.placedetail
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.example.app.data.PlaceData
+import com.example.app.data.Place
 import com.example.app.data.PlaceRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 data class PlaceDetailUIState(
-    val place: PlaceData,
+    val place: Place,
     // TODO: Implement this later
     val isFavorited: Boolean = false
 )
