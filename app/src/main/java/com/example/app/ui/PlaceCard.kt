@@ -61,7 +61,7 @@ private fun PlaceDescription(name: String, description: String) {
 }
 
 @Composable
-private fun PlaceTypes(types: Set<PlaceType>) {
+fun PlaceTypes(types: Set<PlaceType>) {
     val containerColor = MaterialTheme.colorScheme.primaryContainer
     Row(
         modifier = Modifier.horizontalScroll(rememberScrollState()),

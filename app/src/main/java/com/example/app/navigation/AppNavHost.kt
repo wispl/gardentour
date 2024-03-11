@@ -26,6 +26,6 @@ fun AppNavHost(
         placesScreen(navController::navigateToPlaceDetail)
         searchScreen(navController::navigateToPlaceDetail)
 
-        placeDetailScreen()
+        placeDetailScreen(navController::navigateUp)
     }
 }
