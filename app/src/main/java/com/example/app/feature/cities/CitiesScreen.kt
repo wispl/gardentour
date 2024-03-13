@@ -5,18 +5,25 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.app.data.CityRepository
 
 const val CITIES_ROUTE = "city"
 
 @Composable
-private fun CitiesScreen(onClick: (String) -> Unit) {
+private fun CitiesScreen(
+    onClick: (String) -> Unit,
+    viewModel: CitiesViewModel = hiltViewModel()
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     Column {
         LazyColumn {
-            items(CityRepository.allCities()) {
-                it -> Text(it.name)
+            items(uiState.cities) {
+                Text(it.name)
             }
         }
     }

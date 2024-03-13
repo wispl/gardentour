@@ -13,8 +13,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.example.app.data.Place
-import com.example.app.data.PlaceType
+import com.example.app.data.model.Place
+import com.example.app.data.model.PlaceType
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

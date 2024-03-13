@@ -1,12 +1,40 @@
 package com.example.app.data
 
 import com.example.app.R
-import java.util.Random
+import com.example.app.data.model.Address
+import com.example.app.data.model.Place
+import com.example.app.data.model.PlaceType
+import java.util.*
+import javax.inject.Inject
+import javax.inject.Singleton
 
-/// TODO: Hilt Injection?
-object PlaceRepository {
+@Singleton
+class OfflinePlacesRepository @Inject constructor(): PlacesRepository{
+    private val datasource = PlacesDatasource()
     private val random = Random()
-    private val places = mapOf(
+
+    override fun getRandomPlace(): Place {
+        return datasource
+            .places
+            .values
+            .elementAt(random.nextInt(datasource.places.size))
+    }
+
+    override fun getPlaces(): List<Place> {
+        return datasource.places.values.toList()
+
+    }
+
+    override fun getPlaces(filterQuery: PlaceFilterQuery): List<Place> {
+        return datasource.places.values.toList()
+            .filter { filterQuery.city.isEmpty() || it.address.city == filterQuery.city }
+            .filter { filterQuery.types.isEmpty() || it.types.intersect(filterQuery.types).isNotEmpty() }
+            .filter { filterQuery.name.isEmpty() || it.name == filterQuery.name }
+    }
+}
+
+class PlacesDatasource {
+     val places = mapOf(
         "Cape May Beaches" to Place(
             "Cape May Beaches",
             "Visit these beautiful and expansive pearly white beaches with mouth-dropping views. Across the various beaches, vacationers can swim, skimboard, surf, fish, kayak and play volleyball in designated areas. Lifeguards are on duty and many enjoy swimming in the cool waters during summer. At sunset or sunrise, the beaches and waves provide a majestic scenery complement with dolphin sightings.",
@@ -77,30 +105,4 @@ object PlaceRepository {
             price = "\$6 for adults; \$3 for kids 3-12"
         ),
     )
-
-    fun get(name: String): Place {
-        return places[name]!!
-    }
-
-    fun filterByCity(city: City): List<Place> {
-        return places
-            .filter { it.value.address.city == city.name }
-            .values
-            .toList()
-    }
-
-    fun filterByType(types: Set<PlaceType>) : List<Place> {
-        if (types.isEmpty()) {
-            return allPlaces()
-        }
-        return allPlaces().filter { types.intersect(it.types).isNotEmpty() }
-    }
-
-    fun getRandom() : Place {
-        return places.values.elementAt(random.nextInt(places.size))
-    }
-
-    fun allPlaces(): List<Place> {
-        return places.values.toList()
-    }
 }

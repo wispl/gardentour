@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
@@ -22,7 +23,10 @@ const val PLACES_ROUTE = "places"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun PlacesScreen(onClick: (String) -> Unit, viewModel: PlacesViewModel = viewModel()) {
+private fun PlacesScreen(
+    onClick: (String) -> Unit,
+    viewModel: PlacesViewModel = hiltViewModel()
+) {
     val places by viewModel.places.collectAsStateWithLifecycle()
     val activeFilters by viewModel.activeFilters.collectAsStateWithLifecycle()
     val scrollState = rememberScrollState()

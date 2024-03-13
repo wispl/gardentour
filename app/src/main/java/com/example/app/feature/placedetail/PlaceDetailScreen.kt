@@ -23,13 +23,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.app.data.Address
+import com.example.app.data.model.Address
 import com.example.app.ui.PlaceTypes
 
 const val PLACE_ID = "placeId"
@@ -39,9 +40,10 @@ const val PLACE_ROUTE = "place/{$PLACE_ID}"
 @Composable
 private fun PlaceDetailScreen(
     onNavigationClick: () -> Unit,
-    viewModel: PlaceDetailViewModel = viewModel()
+    viewModel: PlaceDetailViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsState()
+    val place = state.place.firstOrNull()
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -57,20 +59,22 @@ private fun PlaceDetailScreen(
                 }
             },
         )
-        Card(shape = RoundedCornerShape(32.dp, 32.dp, 0.dp, 0.dp)) {
-            Column(
-                modifier = Modifier.fillMaxHeight().padding(16.dp).verticalScroll(rememberScrollState())
-            ) {
-                PlaceImageCard(state.place.image)
-                Spacer(modifier = Modifier.height(4.dp))
-                PlaceName(state.place.name)
-                PlaceAddress(state.place.address)
-                PlaceWebsite(state.place.url)
-                Spacer(modifier = Modifier.padding(12.dp))
-                PlaceDescription(state.place.description)
-                Spacer(modifier = Modifier.height(16.dp))
-                PlaceExtraDetails(state.place.time, state.place.price)
-                PlaceTypes(state.place.types)
+        if (place != null) {
+            Card(shape = RoundedCornerShape(32.dp, 32.dp, 0.dp, 0.dp)) {
+                Column(
+                    modifier = Modifier.fillMaxHeight().padding(16.dp).verticalScroll(rememberScrollState())
+                ) {
+                    PlaceImageCard(place.image)
+                    Spacer(modifier = Modifier.height(4.dp))
+                    PlaceName(place.name)
+                    PlaceAddress(place.address)
+                    PlaceWebsite(place.url)
+                    Spacer(modifier = Modifier.padding(12.dp))
+                    PlaceDescription(place.description)
+                    Spacer(modifier = Modifier.height(16.dp))
+                    PlaceExtraDetails(place.time, place.price)
+                    PlaceTypes(place.types)
+                }
             }
         }
     }

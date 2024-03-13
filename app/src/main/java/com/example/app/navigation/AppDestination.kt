@@ -4,6 +4,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.*
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.navOptions
 import com.example.app.R
 import com.example.app.feature.cities.CITIES_ROUTE
 import com.example.app.feature.home.HOME_ROUTE
@@ -37,10 +39,23 @@ enum class AppDestination(
 }
 
 fun NavController.navigateToDestination(destination: AppDestination) {
+    val topLevelNavOptions = navOptions {
+        // Pop up to the start destination of the graph to
+        // avoid building up a large stack of destinations
+        // on the back stack as users select items
+        popUpTo(graph.findStartDestination().id) {
+            saveState = true
+        }
+        // Avoid multiple copies of the same destination when
+        // reselecting the same item
+        launchSingleTop = true
+        // Restore state when reselecting a previously selected item
+        restoreState = true
+    }
     when (destination) {
-        AppDestination.Home -> navigate(HOME_ROUTE)
-        AppDestination.Places -> navigate(PLACES_ROUTE)
-        AppDestination.Cities -> navigate(CITIES_ROUTE)
+        AppDestination.Home -> navigate(HOME_ROUTE, topLevelNavOptions)
+        AppDestination.Places -> navigate(PLACES_ROUTE, topLevelNavOptions)
+        AppDestination.Cities -> navigate(CITIES_ROUTE, topLevelNavOptions)
         AppDestination.Saved -> TODO()
     }
 }

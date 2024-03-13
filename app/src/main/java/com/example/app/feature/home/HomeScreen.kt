@@ -5,22 +5,28 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.app.data.PlaceRepository
 import com.example.app.ui.PlaceCard
 import com.example.app.ui.theme.Typography
 
 const val HOME_ROUTE = "home"
 
 @Composable
-private fun HomeScreen(onClick: (String) -> Unit) {
-    val place = PlaceRepository.getRandom()
+private fun HomeScreen(
+    onClick: (String) -> Unit,
+    viewModel: HomeViewModel = hiltViewModel()
+) {
+    val place by viewModel.place.collectAsStateWithLifecycle()
     Column {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
