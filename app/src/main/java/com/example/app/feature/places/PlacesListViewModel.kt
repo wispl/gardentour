@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
-class PlacesViewModel @Inject constructor(
+class PlacesListViewModel @Inject constructor(
     private val placesRepository: PlacesRepository
 ): ViewModel() {
     private val _activeFilters = MutableStateFlow(setOf<PlaceType>())

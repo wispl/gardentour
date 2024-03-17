@@ -26,20 +26,27 @@ import com.example.app.ui.PlaceCard
 
 const val PLACES_ROUTE = "places"
 
+fun NavGraphBuilder.placesListScreen(onPlaceClick: (String) -> Unit) {
+    composable(route = PLACES_ROUTE) {
+        PlacesListScreen(onPlaceClick)
+    }
+}
+
 @Composable
-private fun PlacesScreen(
+private fun PlacesListScreen(
     onClick: (String) -> Unit,
-    viewModel: PlacesViewModel = hiltViewModel()
+    viewModel: PlacesListViewModel = hiltViewModel()
 ) {
     val places by viewModel.places.collectAsStateWithLifecycle()
     val activeFilters by viewModel.activeFilters.collectAsStateWithLifecycle()
+
     val scrollState = rememberScrollState()
 
     Column {
         Row(
             modifier = Modifier.padding(8.dp).horizontalScroll(scrollState),
-            horizontalArrangement = Arrangement.spacedBy(8.dp))
-        {
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
             viewModel.allFilters().forEach {
                 PlaceFilterChip(it.name, it in activeFilters) {
                     viewModel.toggleFilter(it)
@@ -48,9 +55,7 @@ private fun PlacesScreen(
         }
 
         LazyColumn {
-            items(places) {
-                place -> PlaceCard(place = place, onClick = { onClick(place.name) })
-            }
+            items(places) { PlaceCard(place = it, onClick = { onClick(it.name) }) }
         }
     }
 }
@@ -74,10 +79,4 @@ private fun PlaceFilterChip(
             null
         }
     )
-}
-
-fun NavGraphBuilder.placesScreen(onPlaceClick: (String) -> Unit) {
-    composable(route = PLACES_ROUTE) {
-        PlacesScreen(onPlaceClick)
-    }
 }
