@@ -3,10 +3,9 @@ package com.example.app.feature.placedetail
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -17,11 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -43,12 +39,10 @@ private fun PlaceDetailScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
     val place = state.place.firstOrNull()
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+
+    Column(modifier = Modifier.fillMaxSize()) {
         CenterAlignedTopAppBar(
-            title = { },
+            title = { Text("Detail") },
             navigationIcon = {
                 IconButton(onClick = onNavigationClick) {
                     Icon(
@@ -58,34 +52,38 @@ private fun PlaceDetailScreen(
                 }
             },
         )
+
         if (place != null) {
-            Card(shape = RoundedCornerShape(32.dp, 32.dp, 0.dp, 0.dp)) {
-                Column(
-                    modifier = Modifier.fillMaxHeight().padding(16.dp).verticalScroll(rememberScrollState())
-                ) {
-                    PlaceImageCard(place.image)
-                    Spacer(modifier = Modifier.height(4.dp))
-                    PlaceName(place.name)
-                    PlaceAddress(place.address)
-                    PlaceWebsite(place.url)
-                    Spacer(modifier = Modifier.padding(12.dp))
-                    PlaceDescription(place.description)
-                    Spacer(modifier = Modifier.height(16.dp))
-                    PlaceExtraDetails(place.time, place.price)
+            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+                PlaceImageHeader(place.image)
+                PlaceAddress(place.address)
+
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        // Use weight to prioritize size calculation of Button first
+                        PlaceName(place.name, modifier = Modifier.weight(1f))
+                        PlaceWebsiteButton(place.url)
+                    }
+                    Spacer(modifier = Modifier.padding(8.dp))
                     PlaceTypes(place.types)
+
+                    Spacer(modifier = Modifier.padding(8.dp))
+                    PlaceDescription(place.description)
                 }
+                Spacer(modifier = Modifier.height(4.dp))
+                PlaceExtraDetails(place.time, place.price)
             }
         }
     }
 }
 
 @Composable
-private fun PlaceImageCard(image: Int) {
-    Card(
-        modifier = Modifier
-            .height(240.dp)
-            .fillMaxHeight(),
-        shape = RoundedCornerShape(32.dp)
+private fun PlaceImageHeader(image: Int) {
+    Box(
+        modifier = Modifier.height(240.dp).fillMaxHeight()
     ) {
         Image(
             painter = painterResource(image),
@@ -97,45 +95,56 @@ private fun PlaceImageCard(image: Int) {
 }
 
 @Composable
-private fun PlaceName(name: String) {
+private fun PlaceAddress(address: Address) {
+    Surface(color = MaterialTheme.colorScheme.surfaceVariant) {
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            IconButton(
+                onClick = {},
+                colors = IconButtonDefaults.iconButtonColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer
+                )
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Place,
+                    contentDescription = ""
+                )
+            }
+
+            Spacer(modifier = Modifier.width(8.dp))
+
+            Text(
+                text = address.toString(),
+                style = MaterialTheme.typography.titleMedium,
+                textAlign = TextAlign.Center,
+            )
+        }
+    }
+}
+
+@Composable
+private fun PlaceName(name: String, modifier: Modifier) {
     Text(
         text = name,
         style = MaterialTheme.typography.headlineMedium,
-        textAlign = TextAlign.Center,
+        modifier = modifier
     )
 }
 
+@Composable
+private fun PlaceWebsiteButton(link: String) {
+    val uriHandler = LocalUriHandler.current
+    Button(
+        content = { Text("Visit") },
+        onClick = { uriHandler.openUri(link) }
+    )
+}
 
 @Composable
 private fun PlaceDescription(description: String) {
     Text(text = description, style = MaterialTheme.typography.bodyLarge)
-}
-
-@Composable
-private fun PlaceAddress(address: Address) {
-    val str = "${address.number} ${address.address}, ${address.city}"
-    Text(
-        text = str,
-        style = MaterialTheme.typography.titleMedium,
-        textAlign = TextAlign.Center,
-    )
-}
-
-@Composable
-private fun PlaceWebsite(link: String) {
-    val uriHandler = LocalUriHandler.current
-    val str = buildAnnotatedString {
-        append("Visit their ")
-        pushStringAnnotation(tag = "URL", annotation = link)
-        withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
-            append("website")
-        }
-    }
-    ClickableText(text = str, onClick = {
-        str.getStringAnnotations("URL", it, it).firstOrNull()?.let {
-            annotation -> uriHandler.openUri(annotation.item)
-        }
-    })
 }
 
 @Composable
