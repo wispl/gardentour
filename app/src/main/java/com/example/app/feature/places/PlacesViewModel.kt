@@ -3,8 +3,8 @@ package com.example.app.feature.places
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.app.data.PlaceFilterQuery
-import com.example.app.data.model.Place
 import com.example.app.data.PlacesRepository
+import com.example.app.data.model.Place
 import com.example.app.data.model.PlaceType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi

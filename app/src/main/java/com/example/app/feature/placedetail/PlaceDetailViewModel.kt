@@ -3,8 +3,8 @@ package com.example.app.feature.placedetail
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.app.data.PlaceFilterQuery
-import com.example.app.data.model.Place
 import com.example.app.data.PlacesRepository
+import com.example.app.data.model.Place
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
