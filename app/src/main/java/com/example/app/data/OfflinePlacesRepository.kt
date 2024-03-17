@@ -1,10 +1,7 @@
 package com.example.app.data
 
 import com.example.app.R
-import com.example.app.data.model.Address
-import com.example.app.data.model.Hours
-import com.example.app.data.model.Place
-import com.example.app.data.model.PlaceType
+import com.example.app.data.model.*
 import java.time.LocalTime
 import java.util.*
 import javax.inject.Inject
@@ -44,7 +41,7 @@ class PlacesDatasource {
             Address(251, "Beach Ave", "Cape May City"),
             setOf(PlaceType.Fun),
             url = "https://www.capemay.com/cape-may-beaches",
-            price = "Prices vary by season"
+            price = Price.Vary
         ),
         "Washington Street Mall" to Place(
             "Washington Street Mall",
@@ -54,7 +51,6 @@ class PlacesDatasource {
             setOf(PlaceType.Shopping, PlaceType.Food),
             url = "http://www.heartofcapemay.com/",
             time = Hours.Vary,
-            price = "Free to enter, stores have individual prices"
         ),
         "Jersey Shore Alpacas" to Place(
             "Jersey Shore Alpacas",
@@ -64,7 +60,6 @@ class PlacesDatasource {
             setOf(PlaceType.Zoo, PlaceType.Shopping),
             url = "https://www.jerseyshorealpacas.com/",
             time = Hours.Vary,
-            price = "Free to enter, souvenirs have separate prices"
         ),
         "Cape May Lighthouse" to Place(
             "Cape May Lighthouse",
@@ -74,7 +69,7 @@ class PlacesDatasource {
             setOf(PlaceType.Landmark),
             url = "https://capemaymac.org/experience/cape-may-lighthouse/",
             time = Hours.Range(LocalTime.of(9,0), LocalTime.of(17, 0)),
-            price = "\$10 for adults; \$5 for kids 3-12"
+            price = Price.Cost(5, 10)
         ),
         "Emlen Physick Estate" to Place(
             "Emlen Physick Estate",
@@ -83,7 +78,7 @@ class PlacesDatasource {
             Address(1048, "Washington St", "Cape May City"),
             setOf(PlaceType.Landmark),
             url = "https://capemaymac.org/experience/emlen-physick-estate/",
-            price = "\$15 for adults; \$8-\$10 for kids 3-12",
+            price = Price.Cost(8..10, 15),
             time = Hours.Range(LocalTime.of(9,0), LocalTime.of(20, 30))
         ),
         "Naval Air Station Wildwood Aviation Museum" to Place(
@@ -93,8 +88,8 @@ class PlacesDatasource {
             Address(500, "Forrestal Road", "Cape May City"),
             setOf(PlaceType.Museum),
             url = "https://usnasw.org/",
-            time = Hours.Vary,
-            price = "\$14 for adults; \$10 for kids 3-12"
+            price = Price.Cost(10, 14),
+            time = Hours.Vary
         ),
         "World War II Lookout Tower" to Place(
             "World War II Lookout Tower",
@@ -104,7 +99,7 @@ class PlacesDatasource {
             setOf(PlaceType.Landmark),
             url = "https://capemaymac.org/experience/world-war-ii-tower/",
             time = Hours.Range(LocalTime.of(10,0), LocalTime.of(16, 0)),
-            price = "\$6 for adults; \$3 for kids 3-12"
+            price = Price.Cost(3, 6),
         ),
     )
 }

@@ -29,7 +29,6 @@ data class Address(
 }
 
 sealed interface Hours {
-    // Uses 24 hour time
     data class Range(val start: LocalTime, val end: LocalTime) : Hours {
         init {
             require(start < end)
@@ -50,6 +49,26 @@ sealed interface Hours {
     }
 }
 
+sealed interface Price {
+    data object FreeEntry : Price {
+        override fun toString(): String = "Free entry"
+    }
+
+    data object Vary : Price {
+        override fun toString(): String = "Price varies by seasons)"
+    }
+
+    data class Cost(val children: IntRange, val adult: IntRange) : Price {
+        constructor(price: Int) : this(price, price)
+        constructor(children: Int, adult: Int) :
+                this(children..children, adult..adult)
+        constructor(children: IntRange, adult: Int) :
+                this(children, adult..adult)
+        constructor(children: Int, adult: IntRange) :
+                this(children..children, adult)
+    }
+}
+
 data class Place(
     val name: String,
     val description: String,
@@ -59,5 +78,5 @@ data class Place(
     val types: Set<PlaceType>,
     val url: String = "",
     val time: Hours = Hours.AlwaysOpen,
-    val price: String = "Free"
+    val price: Price = Price.FreeEntry
 )

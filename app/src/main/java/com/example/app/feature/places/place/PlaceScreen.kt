@@ -13,10 +13,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -27,6 +27,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.app.data.model.Address
 import com.example.app.data.model.Hours
+import com.example.app.data.model.Price
 import com.example.app.ui.PlaceTypes
 
 const val PLACE_ID = "placeId"
@@ -90,9 +91,10 @@ private fun PlaceScreen(
 
                     Spacer(modifier = Modifier.padding(8.dp))
                     PlaceDescription(place.description)
+
+                    Spacer(modifier = Modifier.height(8.dp))
+                    PlaceDetails(place.time, place.price)
                 }
-                Spacer(modifier = Modifier.height(4.dp))
-                PlaceExtraDetails(place.time, place.price)
             }
         }
     }
@@ -166,7 +168,7 @@ private fun PlaceDescription(description: String) {
 }
 
 @Composable
-private fun PlaceExtraDetails(hours: Hours, price: String) {
+private fun PlaceDetails(hours: Hours, price: Price) {
     Text(
         text = "Details",
         style = MaterialTheme.typography.titleLarge,
@@ -174,19 +176,35 @@ private fun PlaceExtraDetails(hours: Hours, price: String) {
     )
     Row(
         modifier = Modifier.padding(8.dp),
-        horizontalArrangement = Arrangement.spacedBy(32.dp)
+        horizontalArrangement = Arrangement.spacedBy(32.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Column(
-            verticalArrangement = Arrangement.Center,
-        ) {
-            Text("Hours")
-            Text("Price")
+
+        Column(verticalArrangement = Arrangement.Center) {
+            Text("Price", color = Color.Gray)
+            Text("Hours", color = Color.Gray)
         }
-        Column(
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(hours.toString(), fontWeight = FontWeight.Bold)
-            Text(price, fontWeight = FontWeight.Bold)
+
+        Column(verticalArrangement = Arrangement.Center) {
+            if (price is Price.Cost) {
+                Row () {
+                    Text("Children: " + priceToString(price.children))
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Text("Adult: " + priceToString(price.adult))
+                }
+            } else {
+                Text(price.toString())
+            }
+
+            Text(hours.toString())
         }
+    }
+}
+
+private fun priceToString(intRange: IntRange): String {
+    return if (intRange.first == intRange.last) {
+        "$" + intRange.first.toString()
+    } else {
+        "$" + intRange.first + "-" + intRange.last
     }
 }
