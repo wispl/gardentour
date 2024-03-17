@@ -26,6 +26,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.app.data.model.Address
+import com.example.app.data.model.Hours
 import com.example.app.ui.PlaceTypes
 
 const val PLACE_ID = "placeId"
@@ -148,7 +149,7 @@ private fun PlaceDescription(description: String) {
 }
 
 @Composable
-private fun PlaceExtraDetails(hours: String, price: String) {
+private fun PlaceExtraDetails(hours: Hours, price: String) {
     Text(
         text = "Details",
         style = MaterialTheme.typography.titleLarge,
@@ -167,7 +168,7 @@ private fun PlaceExtraDetails(hours: String, price: String) {
         Column(
             verticalArrangement = Arrangement.Center
         ) {
-            Text(hours, fontWeight = FontWeight.Bold)
+            Text(hours.toString(), fontWeight = FontWeight.Bold)
             Text(price, fontWeight = FontWeight.Bold)
         }
     }

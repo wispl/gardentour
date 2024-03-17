@@ -2,8 +2,10 @@ package com.example.app.data
 
 import com.example.app.R
 import com.example.app.data.model.Address
+import com.example.app.data.model.Hours
 import com.example.app.data.model.Place
 import com.example.app.data.model.PlaceType
+import java.time.LocalTime
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -51,7 +53,7 @@ class PlacesDatasource {
             Address(401, "Washington St", "Cape May City"),
             setOf(PlaceType.Shopping, PlaceType.Food),
             url = "http://www.heartofcapemay.com/",
-            time = "Hours vary seasonally",
+            time = Hours.Vary,
             price = "Free to enter, stores have individual prices"
         ),
         "Jersey Shore Alpacas" to Place(
@@ -61,7 +63,7 @@ class PlacesDatasource {
             Address(521, "South Route 47", "Cape May City"),
             setOf(PlaceType.Zoo, PlaceType.Shopping),
             url = "https://www.jerseyshorealpacas.com/",
-            time = "Hours vary seasonally",
+            time = Hours.Vary,
             price = "Free to enter, souvenirs have separate prices"
         ),
         "Cape May Lighthouse" to Place(
@@ -71,7 +73,7 @@ class PlacesDatasource {
             Address(215, "Lighthouse Ave", "Cape May City"),
             setOf(PlaceType.Landmark),
             url = "https://capemaymac.org/experience/cape-may-lighthouse/",
-            time = "9 a.m.-5 p.m. daily",
+            time = Hours.Range(LocalTime.of(9,0), LocalTime.of(17, 0)),
             price = "\$10 for adults; \$5 for kids 3-12"
         ),
         "Emlen Physick Estate" to Place(
@@ -82,7 +84,7 @@ class PlacesDatasource {
             setOf(PlaceType.Landmark),
             url = "https://capemaymac.org/experience/emlen-physick-estate/",
             price = "\$15 for adults; \$8-\$10 for kids 3-12",
-            time = "9 a.m.-8:30 p.m. daily"
+            time = Hours.Range(LocalTime.of(9,0), LocalTime.of(20, 30))
         ),
         "Naval Air Station Wildwood Aviation Museum" to Place(
             "Naval Air Station Wildwood Aviation Museum",
@@ -91,8 +93,8 @@ class PlacesDatasource {
             Address(500, "Forrestal Road", "Cape May City"),
             setOf(PlaceType.Museum),
             url = "https://usnasw.org/",
-            price = "\$14 for adults; \$10 for kids 3-12",
-            time = "Hours vary seasonally"
+            time = Hours.Vary,
+            price = "\$14 for adults; \$10 for kids 3-12"
         ),
         "World War II Lookout Tower" to Place(
             "World War II Lookout Tower",
@@ -101,7 +103,7 @@ class PlacesDatasource {
             Address(536, "Sunset Blvd", "Cape May City"),
             setOf(PlaceType.Landmark),
             url = "https://capemaymac.org/experience/world-war-ii-tower/",
-            time = "10 a.m.-4 p.m. daily",
+            time = Hours.Range(LocalTime.of(10,0), LocalTime.of(16, 0)),
             price = "\$6 for adults; \$3 for kids 3-12"
         ),
     )
