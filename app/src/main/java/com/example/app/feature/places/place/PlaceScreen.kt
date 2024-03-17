@@ -1,4 +1,4 @@
-package com.example.app.feature.placedetail
+package com.example.app.feature.places.place
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -32,9 +32,26 @@ import com.example.app.ui.PlaceTypes
 const val PLACE_ID = "placeId"
 const val PLACE_ROUTE = "place/{$PLACE_ID}"
 
+fun NavGraphBuilder.placeScreen(onNavigationClick: () -> Unit) {
+    composable(
+        route = PLACE_ROUTE,
+        arguments = listOf(
+            navArgument(PLACE_ID) {
+                type = NavType.StringType
+            }
+        )
+    ) {
+        PlaceScreen(onNavigationClick)
+    }
+}
+
+fun NavController.navigateToPlace(placeId: String) {
+    navigate("place/$placeId")
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun PlaceDetailScreen(
+private fun PlaceScreen(
     onNavigationClick: () -> Unit,
     viewModel: PlaceDetailViewModel = hiltViewModel()
 ) {
@@ -172,17 +189,4 @@ private fun PlaceExtraDetails(hours: Hours, price: String) {
             Text(price, fontWeight = FontWeight.Bold)
         }
     }
-}
-
-fun NavGraphBuilder.placeDetailScreen(onNavigationClick: () -> Unit) {
-    composable(
-        route = PLACE_ROUTE,
-        arguments = listOf(navArgument(PLACE_ID) { type = NavType.StringType })
-    ) {
-        PlaceDetailScreen(onNavigationClick)
-    }
-}
-
-fun NavController.navigateToPlaceDetail(placeId: String) {
-    navigate("place/$placeId")
 }

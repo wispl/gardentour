@@ -24,10 +24,10 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.example.app.ui.PlaceCard
 
-const val PLACES_ROUTE = "places"
+const val PLACES_LIST_ROUTE = "placesList"
 
 fun NavGraphBuilder.placesListScreen(onPlaceClick: (String) -> Unit) {
-    composable(route = PLACES_ROUTE) {
+    composable(route = PLACES_LIST_ROUTE) {
         PlacesListScreen(onPlaceClick)
     }
 }

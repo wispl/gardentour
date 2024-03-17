@@ -1,4 +1,4 @@
-package com.example.app.feature.placedetail
+package com.example.app.feature.places.place
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

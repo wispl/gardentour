@@ -7,9 +7,8 @@ import androidx.navigation.compose.NavHost
 import com.example.app.feature.cities.citiesScreen
 import com.example.app.feature.home.HOME_ROUTE
 import com.example.app.feature.home.homeScreen
-import com.example.app.feature.placedetail.navigateToPlaceDetail
-import com.example.app.feature.placedetail.placeDetailScreen
-import com.example.app.feature.places.placesListScreen
+import com.example.app.feature.places.place.navigateToPlace
+import com.example.app.feature.places.placesScreen
 import com.example.app.feature.search.searchScreen
 
 @Composable
@@ -23,11 +22,12 @@ fun AppNavHost(
         startDestination = startDestination,
         modifier = modifier
     ) {
-        homeScreen(navController::navigateToPlaceDetail)
-        placesListScreen(navController::navigateToPlaceDetail)
-        searchScreen(navController::navigateToPlaceDetail)
-        citiesScreen(navController::navigateToPlaceDetail)
-
-        placeDetailScreen(navController::navigateUp)
+        homeScreen(navController::navigateToPlace)
+        placesScreen(
+            onPlaceClick = navController::navigateToPlace,
+            onBackClick = navController::navigateUp
+        )
+        searchScreen(navController::navigateToPlace)
+        citiesScreen(navController::navigateToPlace)
     }
 }
