@@ -78,5 +78,6 @@ data class Place(
     val types: Set<PlaceType>,
     val url: String = "",
     val time: Hours = Hours.AlwaysOpen,
-    val price: Price = Price.FreeEntry
+    val price: Price = Price.FreeEntry,
+    val id: Int = 0,
 )

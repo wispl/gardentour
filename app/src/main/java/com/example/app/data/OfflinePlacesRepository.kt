@@ -2,13 +2,18 @@ package com.example.app.data
 
 import com.example.app.R
 import com.example.app.data.model.*
+import com.example.app.database.PlaceDao
+import com.example.app.database.PlaceEntity
+import kotlinx.coroutines.flow.*
 import java.time.LocalTime
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class OfflinePlacesRepository @Inject constructor(): PlacesRepository{
+class OfflinePlacesRepository @Inject constructor(
+    private val placeDao: PlaceDao
+) : PlacesRepository{
     private val datasource = PlacesDatasource()
     private val random = Random()
 
@@ -29,6 +34,16 @@ class OfflinePlacesRepository @Inject constructor(): PlacesRepository{
             .filter { filterQuery.city.isEmpty() || it.address.city == filterQuery.city }
             .filter { filterQuery.types.isEmpty() || it.types.intersect(filterQuery.types).isNotEmpty() }
             .filter { filterQuery.name.isEmpty() || it.name == filterQuery.name }
+    }
+
+    override fun getFavoritedPlaces(): Flow<List<PlaceEntity>> = placeDao.getPlaces()
+
+    override suspend fun setFavoritePlace(place: PlaceEntity) {
+        placeDao.insert(place)
+    }
+
+    override suspend fun removeFavoritePlace(place: PlaceEntity) {
+        placeDao.insert(place)
     }
 }
 
