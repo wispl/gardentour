@@ -1,6 +1,7 @@
 package com.example.app.feature.search
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -8,12 +9,15 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
@@ -26,19 +30,47 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.example.app.ui.PlaceCard
 
-
 const val SEARCH_ROUTE = "search"
+
+fun NavGraphBuilder.searchScreen(
+    onPlaceClick: (String) -> Unit,
+    onBackClick: () -> Unit
+) {
+    composable(route = SEARCH_ROUTE) {
+        SearchScreen(
+            onPlaceClick = onPlaceClick,
+            onBackClick = onBackClick
+        )
+    }
+}
+
+fun NavController.navigateToSearch() {
+    navigate(SEARCH_ROUTE)
+}
 
 @Composable
 private fun SearchScreen(
     onPlaceClick: (String) -> Unit,
+    onBackClick: () -> Unit,
     viewModel: SearchViewModel = hiltViewModel()
 ) {
     val query by viewModel.searchQuery.collectAsStateWithLifecycle()
     val searchResults by viewModel.searchResults.collectAsStateWithLifecycle()
 
     Column {
-        SearchField( query ) { viewModel.onQueryChanged(it) }
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            IconButton(onClick = onBackClick) {
+                Icon(
+                    imageVector = Icons.Rounded.ArrowBack,
+                    contentDescription = ""
+                )
+            }
+
+            SearchField( query ) { viewModel.onQueryChanged(it) }
+        }
         LazyColumn {
             items(searchResults) { place ->
                 PlaceCard(place, { onPlaceClick(place.name) } )
@@ -75,15 +107,3 @@ private fun SearchField(
             .padding(16.dp)
     )
 }
-
-fun NavGraphBuilder.searchScreen(onPlaceClick: (String) -> Unit) {
-    composable(route = SEARCH_ROUTE) {
-        SearchScreen(onPlaceClick)
-    }
-}
-
-fun NavController.navigateToSearch() {
-    navigate(SEARCH_ROUTE)
-}
-
-

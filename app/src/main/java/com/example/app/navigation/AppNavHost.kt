@@ -27,7 +27,10 @@ fun AppNavHost(
             onPlaceClick = navController::navigateToPlace,
             onBackClick = navController::navigateUp
         )
-        searchScreen(navController::navigateToPlace)
+        searchScreen(
+            onPlaceClick = navController::navigateToPlace,
+            onBackClick = navController::navigateUp
+        )
         citiesScreen(navController::navigateToPlace)
     }
 }
