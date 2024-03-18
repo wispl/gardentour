@@ -101,6 +101,36 @@ class PlacesDatasource {
             url = "https://capemaywinery.com/",
             time = Hours.Vary,
             price = Price.Vary
+        ),
+        "Congress Hall" to Place(
+            "Congress Hall",
+            "Along the shoreline of New Jersey's Cape May, you'll find Congress Hall, a historic hotel with boarding house origins dating back to 1816. Today, Congress Hall pays tribute to its past by maintaining much of its Victorian charm – a particular draw for recent guests. The Brown Room, with its Prohibition-era lounge setting, offers nightly entertainment and friendly bartenders that remind visitors of a bygone era. ",
+            R.drawable.congress_hall,
+            "200 Congress Place",
+            "Cape May City",
+            setOf(PlaceType.Hotel),
+            url = "https://www.caperesorts.com/congress-hall",
+            price = Price.Cost(189)
+        ),
+        "Virginia Hotel & Cottages" to Place(
+            "The Virginia Hotel & Cottages",
+            "Overlooking the New Jersey shoreline from the state's southernmost point, The Virginia Hotel & Cottages in Cape May offers guests a classier alternative to the area's kitschier digs. Guests praise the hotel's efforts to make your trip stress-free, which includes providing complimentary beach chairs, towels and umbrellas for those looking to soak up the sun on the property's private stretch of sand.",
+            R.drawable.virginia_hotel,
+            "25 Jackson St",
+            "Cape May City",
+            setOf(PlaceType.Hotel),
+            url = "https://www.caperesorts.com/virginia-hotel",
+            price = Price.Cost(218)
+        ),
+
+        "Ocean City Boardwalk" to Place(
+            "Ocean City BoardWalk",
+            "The Ocean City Boardwalk serves as the area's primary pedestrian artery and runs about 2 1/2 miles along the beach. Ocean City's original boardwalk, along with much of the city, burnt down in 1927. The current boardwalk was built immediately after, but sections have been repaired and replaced continuously over time. Currently, the boardwalk hosts amusement park rides, restaurants, stores and more. The Ocean City Boardwalk remains an iconic path to walk, run or bike down.",
+            R.drawable.boardwalk,
+            "400 Boardwalk",
+            "Ocean City",
+            setOf(PlaceType.Fun),
+            url = "https://oceancityvacation.com/where-to-shop/boardwalk.html",
         )
     )
 }

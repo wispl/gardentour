@@ -34,7 +34,7 @@ sealed interface Hours {
     }
 
     data object Vary : Hours {
-        override fun toString(): String = "Hours varies (i.e. by seasons)"
+        override fun toString(): String = "Hours varies by seasons"
     }
 
     data object AlwaysOpen : Hours {
@@ -48,7 +48,7 @@ sealed interface Price {
     }
 
     data object Vary : Price {
-        override fun toString(): String = "Price varies by seasons)"
+        override fun toString(): String = "Price varies (such as by seasons or selections)"
     }
 
     data class Cost(val children: IntRange, val adult: IntRange) : Price {
