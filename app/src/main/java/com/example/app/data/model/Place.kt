@@ -11,7 +11,8 @@ enum class PlaceType {
     Shopping,
     Food,
     Landmark,
-    Zoo
+    Zoo,
+    Hotel
 }
 
 data class Image(
@@ -19,14 +20,6 @@ data class Image(
     val image: Int,
     val desc: String
 )
-
-data class Address(
-    val number: Int,
-    val address: String,
-    val city: String
-) {
-    override fun toString(): String = this.number.toString() + " " + this.address + ", " + this.city
-}
 
 sealed interface Hours {
     data class Range(val start: LocalTime, val end: LocalTime) : Hours {
@@ -74,7 +67,8 @@ data class Place(
     val description: String,
     @DrawableRes
     val image: Int,
-    val address: Address,
+    val address: String,
+    val city: String,
     val types: Set<PlaceType>,
     val url: String = "",
     val time: Hours = Hours.AlwaysOpen,

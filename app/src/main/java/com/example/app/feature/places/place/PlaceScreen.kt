@@ -25,7 +25,6 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.app.data.model.Address
 import com.example.app.data.model.Hours
 import com.example.app.data.model.Price
 import com.example.app.ui.PlaceTypes
@@ -75,7 +74,7 @@ private fun PlaceScreen(
         if (place != null) {
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 PlaceImageHeader(place.image)
-                PlaceAddress(place.address)
+                PlaceAddress(place.address, place.city)
 
                 Column(modifier = Modifier.padding(16.dp)) {
                     Row(
@@ -115,7 +114,7 @@ private fun PlaceImageHeader(image: Int) {
 }
 
 @Composable
-private fun PlaceAddress(address: Address) {
+private fun PlaceAddress(address: String, city: String) {
     Surface(color = MaterialTheme.colorScheme.surfaceVariant) {
         Row(
             modifier = Modifier.fillMaxWidth().padding(8.dp),
@@ -136,7 +135,7 @@ private fun PlaceAddress(address: Address) {
             Spacer(modifier = Modifier.width(8.dp))
 
             Text(
-                text = address.toString(),
+                text = "$address, $city",
                 style = MaterialTheme.typography.titleMedium,
                 textAlign = TextAlign.Center,
             )
