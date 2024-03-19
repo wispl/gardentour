@@ -42,23 +42,20 @@ sealed interface Hours {
     }
 }
 
+// Helper constructors for constructing strings for Pricing
 sealed interface Price {
     data object FreeEntry : Price {
-        override fun toString(): String = "Free entry"
+        override fun toString(): String = "Free Entry"
     }
-
     data object Vary : Price {
-        override fun toString(): String = "Price varies (such as by seasons or selections)"
+        override fun toString(): String = "Price varies by seasons or selection"
     }
-
-    data class Cost(val children: IntRange, val adult: IntRange) : Price {
-        constructor(price: Int) : this(price, price)
-        constructor(children: Int, adult: Int) :
-                this(children..children, adult..adult)
-        constructor(children: IntRange, adult: Int) :
-                this(children, adult..adult)
-        constructor(children: Int, adult: IntRange) :
-                this(children..children, adult)
+    data class Cost(val cost: String) : Price {
+        constructor(price: Int) : this("$$price")
+        constructor(adult: Int, children: Int) : this("Adults: $$adult     Children: $$children")
+        constructor(daily: Int, weekly: Int, seasonally: Int) :
+                this("Daily: $$daily     Weekly: $$weekly     Seasonally: $$seasonally")
+        override fun toString() = cost
     }
 }
 
@@ -72,6 +69,6 @@ data class Place(
     val types: Set<PlaceType>,
     val url: String = "",
     val time: Hours = Hours.AlwaysOpen,
-    val price: Price = Price.FreeEntry,
+    val price: String = Price.FreeEntry.toString(),
     val id: Int = 0,
 )

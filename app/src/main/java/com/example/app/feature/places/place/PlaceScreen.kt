@@ -26,7 +26,6 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.app.data.model.Hours
-import com.example.app.data.model.Price
 import com.example.app.ui.PlaceTypes
 
 const val PLACE_ID = "placeId"
@@ -167,7 +166,7 @@ private fun PlaceDescription(description: String) {
 }
 
 @Composable
-private fun PlaceDetails(hours: Hours, price: Price) {
+private fun PlaceDetails(hours: Hours, price: String) {
     Text(
         text = "Details",
         style = MaterialTheme.typography.titleLarge,
@@ -185,25 +184,8 @@ private fun PlaceDetails(hours: Hours, price: Price) {
         }
 
         Column(verticalArrangement = Arrangement.Center) {
-            if (price is Price.Cost) {
-                Row () {
-                    Text("Children: " + priceToString(price.children))
-                    Spacer(modifier = Modifier.width(16.dp))
-                    Text("Adult: " + priceToString(price.adult))
-                }
-            } else {
-                Text(price.toString())
-            }
-
+            Text(price)
             Text(hours.toString())
         }
-    }
-}
-
-private fun priceToString(intRange: IntRange): String {
-    return if (intRange.first == intRange.last) {
-        "$" + intRange.first.toString()
-    } else {
-        "$" + intRange.first + "-" + intRange.last
     }
 }

@@ -14,7 +14,7 @@ class PlacesDatasource {
             "Cape May City",
             setOf(PlaceType.Fun),
             url = "https://www.capemay.com/cape-may-beaches",
-            price = Price.Vary
+            price = Price.Vary.toString()
         ),
         "Washington Street Mall" to Place(
             "Washington Street Mall",
@@ -45,7 +45,7 @@ class PlacesDatasource {
             setOf(PlaceType.Landmark),
             url = "https://capemaymac.org/experience/cape-may-lighthouse/",
             time = Hours.Range(LocalTime.of(9,0), LocalTime.of(17, 0)),
-            price = Price.Cost(5, 10)
+            price = Price.Cost(5, 10).toString()
         ),
         "Emlen Physick Estate" to Place(
             "Emlen Physick Estate",
@@ -55,7 +55,7 @@ class PlacesDatasource {
             "Cape May City",
             setOf(PlaceType.Landmark),
             url = "https://capemaymac.org/experience/emlen-physick-estate/",
-            price = Price.Cost(8..10, 15),
+            price = Price.Cost("Adult: $8-10     Children: $15").toString(),
             time = Hours.Range(LocalTime.of(9,0), LocalTime.of(20, 30))
         ),
         "Naval Air Station Wildwood Aviation Museum" to Place(
@@ -66,7 +66,7 @@ class PlacesDatasource {
             "Cape May City",
             setOf(PlaceType.Museum),
             url = "https://usnasw.org/",
-            price = Price.Cost(10, 14),
+            price = Price.Cost(10, 14).toString(),
             time = Hours.Vary
         ),
         "World War II Lookout Tower" to Place(
@@ -78,7 +78,7 @@ class PlacesDatasource {
             setOf(PlaceType.Landmark),
             url = "https://capemaymac.org/experience/world-war-ii-tower/",
             time = Hours.Range(LocalTime.of(10,0), LocalTime.of(16, 0)),
-            price = Price.Cost(3, 6),
+            price = Price.Cost(3, 6).toString(),
         ),
         "Cape May Wineries and Vineyards" to Place(
             "Cape May Wineries and Vineyards",
@@ -89,7 +89,7 @@ class PlacesDatasource {
             setOf(PlaceType.Fun, PlaceType.Shopping),
             url = "https://capemaywinery.com/",
             time = Hours.Vary,
-            price = Price.Vary
+            price = Price.Vary.toString()
         ),
         "Cape May Wineries and Vineyards" to Place(
             "Cape May Wineries and Vineyards",
@@ -100,7 +100,7 @@ class PlacesDatasource {
             setOf(PlaceType.Fun, PlaceType.Shopping),
             url = "https://capemaywinery.com/",
             time = Hours.Vary,
-            price = Price.Vary
+            price = Price.Vary.toString()
         ),
         "Congress Hall" to Place(
             "Congress Hall",
@@ -110,7 +110,7 @@ class PlacesDatasource {
             "Cape May City",
             setOf(PlaceType.Hotel),
             url = "https://www.caperesorts.com/congress-hall",
-            price = Price.Cost(189)
+            price = Price.Cost(189).toString()
         ),
         "Virginia Hotel & Cottages" to Place(
             "The Virginia Hotel & Cottages",
@@ -120,9 +120,10 @@ class PlacesDatasource {
             "Cape May City",
             setOf(PlaceType.Hotel),
             url = "https://www.caperesorts.com/virginia-hotel",
-            price = Price.Cost(218)
+            price = Price.Cost(218).toString()
         ),
 
+//        https://travel.usnews.com/dims4/USNEWS/b306baa/2147483647/resize/976x652%5E%3E/crop/976x652/quality/85/?url=https%3A%2F%2Ftravel.usnews.com%2Fimages%2FGettyImages-1090124064.jpg
         "Ocean City Boardwalk" to Place(
             "Ocean City BoardWalk",
             "The Ocean City Boardwalk serves as the area's primary pedestrian artery and runs about 2 1/2 miles along the beach. Ocean City's original boardwalk, along with much of the city, burnt down in 1927. The current boardwalk was built immediately after, but sections have been repaired and replaced continuously over time. Currently, the boardwalk hosts amusement park rides, restaurants, stores and more. The Ocean City Boardwalk remains an iconic path to walk, run or bike down.",
@@ -131,6 +132,17 @@ class PlacesDatasource {
             "Ocean City",
             setOf(PlaceType.Fun),
             url = "https://oceancityvacation.com/where-to-shop/boardwalk.html",
+        ),
+
+        "Ocean City Beach" to Place(
+            "Ocean City Beach",
+            "The barrier island of Ocean City advertises 8 miles of coast for visitors to explore. The beach's warm weather and strict rules primarily draw visitors looking for a relatively calm and relaxing opportunity to enjoy the saltwater and sun.",
+            R.drawable.ocean_beach,
+            "Ocean City",
+            "Ocean City",
+            setOf(PlaceType.Fun),
+            url = "http://www.ocnj.us/beach/",
+            price = Price.Cost(5, 10, 25).toString()
         )
     )
 }
