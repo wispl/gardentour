@@ -4,6 +4,7 @@ import com.example.app.data.datasource.PlacesDatasource
 import com.example.app.data.model.*
 import com.example.app.database.PlaceDao
 import com.example.app.database.PlaceEntity
+import com.example.app.database.toEntity
 import kotlinx.coroutines.flow.*
 import java.util.*
 import javax.inject.Inject
@@ -37,11 +38,11 @@ class OfflinePlacesRepository @Inject constructor(
 
     override fun getFavoritedPlaces(): Flow<List<PlaceEntity>> = placeDao.getPlaces()
 
-    override suspend fun setFavoritePlace(place: PlaceEntity) {
-        placeDao.insert(place)
+    override suspend fun setFavoritePlace(place: Place) {
+        placeDao.insert(place.toEntity())
     }
 
-    override suspend fun removeFavoritePlace(place: PlaceEntity) {
-        placeDao.insert(place)
+    override suspend fun removeFavoritePlace(place: Place) {
+        placeDao.delete(place.toEntity())
     }
 }

@@ -9,6 +9,7 @@ import com.example.app.feature.home.HOME_ROUTE
 import com.example.app.feature.home.homeScreen
 import com.example.app.feature.places.place.navigateToPlace
 import com.example.app.feature.places.placesScreen
+import com.example.app.feature.saved.savedScreen
 import com.example.app.feature.search.searchScreen
 
 @Composable
@@ -32,5 +33,6 @@ fun AppNavHost(
             onBackClick = navController::navigateUp
         )
         citiesScreen(navController::navigateToPlace)
+        savedScreen()
     }
 }

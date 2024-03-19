@@ -17,6 +17,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.app.feature.cities.CITIES_ROUTE
 import com.example.app.feature.home.HOME_ROUTE
 import com.example.app.feature.places.PLACES_LIST_ROUTE
+import com.example.app.feature.saved.SAVED_ROUTE
 import com.example.app.feature.search.navigateToSearch
 import com.example.app.navigation.AppDestination
 import com.example.app.navigation.AppNavHost
@@ -70,6 +71,7 @@ fun AppScreen(navController: NavHostController = rememberNavController()) {
         HOME_ROUTE -> AppDestination.Home
         PLACES_LIST_ROUTE -> AppDestination.Places
         CITIES_ROUTE -> AppDestination.Cities
+        SAVED_ROUTE -> AppDestination.Saved
         else -> null
     }
 

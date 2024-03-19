@@ -13,6 +13,8 @@ import com.example.app.R
 import com.example.app.feature.cities.CITIES_ROUTE
 import com.example.app.feature.home.HOME_ROUTE
 import com.example.app.feature.places.PLACES_ROUTE
+import com.example.app.feature.saved.SAVED_ROUTE
+import com.example.app.feature.search.navigateToSearch
 
 enum class AppDestination(
     val text: Int,
@@ -59,6 +61,6 @@ fun NavController.navigateToDestination(destination: AppDestination) {
         AppDestination.Home -> navigate(HOME_ROUTE, topLevelNavOptions)
         AppDestination.Places -> navigate(PLACES_ROUTE, topLevelNavOptions)
         AppDestination.Cities -> navigate(CITIES_ROUTE, topLevelNavOptions)
-        AppDestination.Saved -> TODO()
+        AppDestination.Saved -> navigate(SAVED_ROUTE, topLevelNavOptions)
     }
 }

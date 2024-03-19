@@ -18,7 +18,7 @@ interface PlacesRepository {
 
     fun getFavoritedPlaces(): Flow<List<PlaceEntity>>
 
-    suspend fun setFavoritePlace(place: PlaceEntity)
+    suspend fun setFavoritePlace(place: Place)
 
-    suspend fun removeFavoritePlace(place: PlaceEntity)
+    suspend fun removeFavoritePlace(place: Place)
 }
