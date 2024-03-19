@@ -30,7 +30,7 @@ class OfflinePlacesRepository @Inject constructor(
 
     override fun getPlaces(filterQuery: PlaceFilterQuery): List<Place> {
         return datasource.places.values.toList()
-            .filter { filterQuery.city.isEmpty() || it.address.city == filterQuery.city }
+            .filter { filterQuery.city.isEmpty() || it.city == filterQuery.city }
             .filter { filterQuery.types.isEmpty() || it.types.intersect(filterQuery.types).isNotEmpty() }
             .filter { filterQuery.name.isEmpty() || it.name == filterQuery.name }
     }
