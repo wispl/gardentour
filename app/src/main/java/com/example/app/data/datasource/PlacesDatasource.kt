@@ -137,12 +137,77 @@ class PlacesDatasource {
         "Ocean City Beach" to Place(
             "Ocean City Beach",
             "The barrier island of Ocean City advertises 8 miles of coast for visitors to explore. The beach's warm weather and strict rules primarily draw visitors looking for a relatively calm and relaxing opportunity to enjoy the saltwater and sun.",
+            // https://travel.usnews.com/dims4/USNEWS/d0001f8/2147483647/resize/976x652%5E%3E/crop/976x652/quality/85/?url=https%3A%2F%2Ftravel.usnews.com%2Fimages%2FGettyImages-1077660992.jpg
             R.drawable.ocean_beach,
             "Ocean City",
             "Ocean City",
             setOf(PlaceType.Fun),
             url = "http://www.ocnj.us/beach/",
             price = Price.Cost(5, 10, 25).toString()
+        ),
+
+        "Corson's Inlet State Park" to Place(
+            "Corson's Inlet State Park",
+            "A small strip of undeveloped land, Corson's Inlet State Park was established in 1969 to protect its distinct wildlife. This state park appeals primarily to nature lovers, who want a more organic beach experience than the popular city beach. The park boasts hiking trails that weave through sand dunes and beaches for sun-soaking (but no swimming) and other wilderness areas. There is also a boat launch available for anyone who wants to take advantage of a day on the water.",
+            // https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Corson%E2%80%99s_Inlet_and_Russ_Chatin_Bridge.jpg/1280px-Corson%E2%80%99s_Inlet_and_Russ_Chatin_Bridge.jpg
+            R.drawable.ocean_beach,
+            "County Hwy 619",
+            "Ocean City",
+            setOf(PlaceType.Fun),
+            "https://www.state.nj.us/dep/parksandforests/parks/corsons.html",
+        ),
+
+        "Playland's Castaway Cove" to Place(
+            "Playland's Castaway Cove",
+            "More than 32 rides, including a Ferris wheel, make Playland's Castaway Cove stand out on the Ocean City Boardwalk. The amusement park has been operating for more than 60 years and has developed a reputation for its assortment of thrill-seeking and family-friendly rides. In addition to its numerous rides, Playland's Castaway Cove also operates an indoor arcade on-site as well as two mini-golf locations and a go-kart speedway nearby.",
+            R.drawable.ocean_beach,
+            // https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Playland_Castaway_Cove-21_%287595002752%29.jpg/640px-Playland_Castaway_Cove-21_%287595002752%29.jpg
+            // Kevin Jarrett
+            "1020 Boardwalk",
+            "Ocean City",
+            setOf(PlaceType.Fun),
+            "https://oceancityfun.com/",
+            price = Price.Vary.toString(),
+            time = Hours.Vary
+        ),
+
+        "Gillian's Wonderland Pier" to Place(
+            "Gillian's Wonderland Pier",
+            "An initial iteration of the park opened in 1930 following a fire on the boardwalk, and its primary attractions were a Ferris wheel and a merry-go-round. The park has since moved and expanded to include more than 25 rides, which travelers can ride for a variety of ticket prices. Gillian's Wonderland Pier's attractions skew toward younger children, but there are rides to amuse most ages.",
+            R.drawable.ocean_beach,
+            "600 Boardwalk",
+            "Ocean City",
+            setOf(PlaceType.Fun),
+            "http://www.gillians.com/",
+            price = Price.Vary.toString(),
+            time = Hours.Vary
+        ),
+
+        "Glazed Over Studios" to Place(
+            "Glazed Over Studios",
+            "Glazed Over Studios offers opportunities to try out pottery, mosaics and canvas walk-in sessions, making it an excellent, impromptu option for Ocean City tourists. Travelers who prefer a more structured learning opportunity can sign up for one of the studio's classes, which are geared toward adults or kids. ",
+//          https://media-cdn.tripadvisor.com/media/photo-s/1a/71/2d/04/glazed-over-studio-on.jpg
+//          JCN
+            R.drawable.ocean_beach,
+            "704 Asbury Ave",
+            "Ocean City",
+            setOf(PlaceType.Fun),
+            "https://www.glazedoverstudios.com/",
+            price = Price.Vary.toString(),
+            // 11 a.m.-5 p.m. Thursday to Monday
+            time = Hours.Vary
+        ),
+
+        "Stainton's" to Place(
+            "Stainton's",
+            "Stainton's Gallery of Shops provides space for more than 70 unique vendors to sell their wares. While it's best to shop at Stainton's without expectations, the wares sold can include jewelry, candles, art, pottery, toys and apparel. Past travelers say that Stainton's provides an excellent place to pick up a one-of-a-kind gift or a memorable keepsake.",
+            // https://travel.usnews.com/dims4/USNEWS/d1bf4ba/2147483647/resize/976x652%5E%3E/crop/976x652/quality/85/?url=https%3A%2F%2Ftravel.usnews.com%2Fimages%2Fstaintons-exterior.jpg
+            R.drawable.ocean_beach,
+            "810 Asbury Ave",
+            "Ocean City",
+            setOf(PlaceType.Shopping),
+            "https://staintons.com/",
+            time = Hours.Vary
         )
     )
 }
