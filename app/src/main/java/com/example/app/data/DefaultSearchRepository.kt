@@ -1,39 +1,26 @@
 package com.example.app.data
 
 import com.example.app.data.model.Place
+import com.example.app.database.dao.PlaceDao
+import com.example.app.database.dao.PlaceFtsDao
+import com.example.app.database.model.toExternalModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 class DefaultSearchRepository @Inject constructor(
-    placesRepository: PlacesRepository
+    private val placeDao: PlaceDao,
+    private val placeFtsDao: PlaceFtsDao
 ) : SearchRepository {
 
-    // Splits place names into words and group them, forming buckets to reduce
-    // searching the full repository
-    private val placesBucketMap = placesRepository.getPlaces()
-        .map { place -> place.name.split(" ").map { it.lowercase() to place } }
-        .flatten()
-        .groupBy({ it.first }, {it.second})
-
-    private val recentSearches = mutableListOf<String>()
-
-    override fun search(str: String): List<Place> {
-        if (str.isEmpty()) {
-            return emptyList()
-        }
-
-        recentSearches += str
-        return placesBucketMap
-            .filter { str.lowercase() in it.key }
-            .values
-            .flatten()
-            .distinct()
-    }
-
-    override fun getRecentSearches(): List<String> {
-        return recentSearches
-    }
-
-    override fun clearRecentSearches() {
-        recentSearches.clear()
+    @OptIn(ExperimentalCoroutinesApi::class)
+    override fun search(query: String): Flow<List<Place>> {
+        return placeFtsDao.searchPlaces("*$query*")
+            .mapLatest { it.toSet()}
+            .distinctUntilChanged()
+            .flatMapLatest {
+                placeDao.getPlaces(useNamesFilter = true, namesFilter = it)
+            }
+            .map { it.map { it.toExternalModel() } }
     }
 }

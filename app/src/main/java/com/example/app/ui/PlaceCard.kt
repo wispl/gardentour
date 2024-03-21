@@ -25,7 +25,7 @@ fun PlaceCard(
 ) {
     Card(onClick = onClick, modifier = modifier.padding((12.dp))) {
         Column {
-            PlaceImageHeader(place.image)
+//            PlaceImageHeader(place.image)
             Box(modifier = Modifier.padding(18.dp)) {
                 Column {
                     PlaceDescription(place.name, place.description)
@@ -36,6 +36,7 @@ fun PlaceCard(
     }
 }
 
+// TODO: Use Coil
 @Composable
 private fun PlaceImageHeader(image: Int) {
     Box(modifier = Modifier.height(180.dp).fillMaxWidth()) {

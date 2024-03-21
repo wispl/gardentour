@@ -9,16 +9,15 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+// TODO: handle migration
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
     @Provides
     @Singleton
-    fun providesAppDatabase(
-        @ApplicationContext context: Context,
-    ): AppDatabase = databaseBuilder(
-        context,
-        AppDatabase::class.java,
-        "app_database",
-    ).build()
+    fun providesAppDatabase(@ApplicationContext context: Context): AppDatabase {
+        return databaseBuilder( context, AppDatabase::class.java, "app_database")
+            .createFromAsset("database.db")
+            .build()
+    }
 }

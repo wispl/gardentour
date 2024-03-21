@@ -10,5 +10,6 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     placesRepository: PlacesRepository
 ) : ViewModel() {
+    // TODO: properly implement this
     val place = MutableStateFlow(placesRepository.getRandomPlace())
 }

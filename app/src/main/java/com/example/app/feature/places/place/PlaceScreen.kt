@@ -9,7 +9,6 @@ import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,12 +19,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.app.data.model.Hours
 import com.example.app.ui.PlaceTypes
 
 const val PLACE_ID = "placeId"
@@ -48,14 +48,19 @@ fun NavController.navigateToPlace(placeId: String) {
     navigate("place/$placeId")
 }
 
+class PlaceArgs(val placeId: String) {
+    constructor(savedStateHandle: SavedStateHandle) : this(checkNotNull(savedStateHandle[PLACE_ID]) as String)
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun PlaceScreen(
     onNavigationClick: () -> Unit,
     viewModel: PlaceDetailViewModel = hiltViewModel()
 ) {
-    val state by viewModel.uiState.collectAsState()
-    val place = state.place.firstOrNull()
+    val state by viewModel.uiState.collectAsStateWithLifecycle()
+    // TODO: Fix this later
+    val place = state!!.place
 
     Column(modifier = Modifier.fillMaxSize()) {
         CenterAlignedTopAppBar(
@@ -70,34 +75,33 @@ private fun PlaceScreen(
             },
         )
 
-        if (place != null) {
-            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-                PlaceImageHeader(place.image)
-                PlaceAddress(place.address, place.city)
+        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+//            PlaceImageHeader(place.image)
+            PlaceAddress(place.address, place.city)
 
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        // Use weight to prioritize size calculation of Button first
-                        PlaceName(place.name, modifier = Modifier.weight(1f))
-                        PlaceWebsiteButton(place.url)
-                    }
-                    Spacer(modifier = Modifier.padding(8.dp))
-                    PlaceTypes(place.types)
-
-                    Spacer(modifier = Modifier.padding(8.dp))
-                    PlaceDescription(place.description)
-
-                    Spacer(modifier = Modifier.height(8.dp))
-                    PlaceDetails(place.time, place.price)
+            Column(modifier = Modifier.padding(16.dp)) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    // Use weight to prioritize size calculation of Button first
+                    PlaceName(place.name, modifier = Modifier.weight(1f))
+                    PlaceWebsiteButton(place.website)
                 }
+                Spacer(modifier = Modifier.padding(8.dp))
+                PlaceTypes(place.types)
+
+                Spacer(modifier = Modifier.padding(8.dp))
+                PlaceDescription(place.description)
+
+                Spacer(modifier = Modifier.height(8.dp))
+                PlaceDetails(place.hours, place.price)
             }
         }
     }
 }
 
+// TODO: Use Coil
 @Composable
 private fun PlaceImageHeader(image: Int) {
     Box(
@@ -166,7 +170,7 @@ private fun PlaceDescription(description: String) {
 }
 
 @Composable
-private fun PlaceDetails(hours: Hours, price: String) {
+private fun PlaceDetails(hours: String, price: String) {
     Text(
         text = "Details",
         style = MaterialTheme.typography.titleLarge,

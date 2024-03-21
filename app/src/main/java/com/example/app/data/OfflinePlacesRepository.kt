@@ -1,12 +1,11 @@
 package com.example.app.data
 
-import com.example.app.data.datasource.PlacesDatasource
-import com.example.app.data.model.*
-import com.example.app.database.PlaceDao
-import com.example.app.database.PlaceEntity
-import com.example.app.database.toEntity
-import kotlinx.coroutines.flow.*
-import java.util.*
+import com.example.app.data.model.Place
+import com.example.app.database.dao.PlaceDao
+import com.example.app.database.model.PlaceEntity
+import com.example.app.database.model.toExternalModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -14,35 +13,25 @@ import javax.inject.Singleton
 class OfflinePlacesRepository @Inject constructor(
     private val placeDao: PlaceDao
 ) : PlacesRepository{
-    private val datasource = PlacesDatasource()
-    private val random = Random()
+    override fun getAllPlaces(): Flow<List<Place>> {
+        return placeDao.getPlaces().map { it.map(PlaceEntity::toExternalModel) }
+    }
+
+    override fun getPlaces(filterQuery: PlaceFilterQuery): Flow<List<Place>> {
+        return placeDao.getPlaces(
+            useTypesFilter = filterQuery.types != null,
+            typesFilter = filterQuery.types ?: emptySet(),
+            useCityFilter = filterQuery.city != null,
+            cityFilter = filterQuery.city ?: ""
+        )
+        .map { it.map(PlaceEntity::toExternalModel) }
+    }
+
+    override fun getPlace(name: String): Flow<Place> {
+        return placeDao.getPlace(name).map(PlaceEntity::toExternalModel)
+    }
 
     override fun getRandomPlace(): Place {
-        return datasource
-            .places
-            .values
-            .elementAt(random.nextInt(datasource.places.size))
-    }
-
-    override fun getPlaces(): List<Place> {
-        return datasource.places.values.toList()
-
-    }
-
-    override fun getPlaces(filterQuery: PlaceFilterQuery): List<Place> {
-        return datasource.places.values.toList()
-            .filter { filterQuery.city.isEmpty() || it.city == filterQuery.city }
-            .filter { filterQuery.types.isEmpty() || it.types.intersect(filterQuery.types).isNotEmpty() }
-            .filter { filterQuery.name.isEmpty() || it.name == filterQuery.name }
-    }
-
-    override fun getFavoritedPlaces(): Flow<List<PlaceEntity>> = placeDao.getPlaces()
-
-    override suspend fun setFavoritePlace(place: Place) {
-        placeDao.insert(place.toEntity())
-    }
-
-    override suspend fun removeFavoritePlace(place: Place) {
-        placeDao.delete(place.toEntity())
+        return placeDao.getRandomPlace().toExternalModel()
     }
 }

@@ -2,23 +2,16 @@ package com.example.app.data
 
 import com.example.app.data.model.Place
 import com.example.app.data.model.PlaceType
-import com.example.app.database.PlaceEntity
 import kotlinx.coroutines.flow.Flow
 
 data class PlaceFilterQuery(
-    val name: String = "",
-    val city: String = "",
-    val types: Set<PlaceType> = emptySet()
+    val city: String? = null,
+    val types: Set<PlaceType>? = null
 )
 
 interface PlacesRepository {
+    fun getAllPlaces(): Flow<List<Place>>
+    fun getPlaces(filterQuery: PlaceFilterQuery): Flow<List<Place>>
+    fun getPlace(name: String): Flow<Place>
     fun getRandomPlace(): Place
-    fun getPlaces(): List<Place>
-    fun getPlaces(filterQuery: PlaceFilterQuery): List<Place>
-
-    fun getFavoritedPlaces(): Flow<List<PlaceEntity>>
-
-    suspend fun setFavoritePlace(place: Place)
-
-    suspend fun removeFavoritePlace(place: Place)
 }

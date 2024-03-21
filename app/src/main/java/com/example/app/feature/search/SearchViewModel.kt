@@ -21,7 +21,7 @@ class SearchViewModel @Inject constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val searchResults: StateFlow<List<Place>> = searchQuery
-        .flatMapLatest { flowOf(searchRepository.search(it)) }
+        .flatMapLatest { searchRepository.search(it) }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),

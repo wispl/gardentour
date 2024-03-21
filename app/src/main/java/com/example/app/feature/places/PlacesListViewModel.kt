@@ -20,7 +20,9 @@ class PlacesListViewModel @Inject constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val places: StateFlow<List<Place>> = activeFilters
-        .flatMapLatest { flowOf(placesRepository.getPlaces(PlaceFilterQuery(types = activeFilters.value))) }
+        .flatMapLatest {
+            placesRepository.getPlaces(PlaceFilterQuery(types = activeFilters.value))
+        }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
