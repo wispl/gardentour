@@ -1,6 +1,6 @@
 package com.example.app.data.datasource
 
-import com.example.app.data.model.City
+import com.example.app.model.City
 
 class CitiesDatasource {
     val cities = mapOf(

@@ -1,7 +1,7 @@
 package com.example.app.data
 
 import com.example.app.data.datasource.CitiesDatasource
-import com.example.app.data.model.City
+import com.example.app.model.City
 import javax.inject.Inject
 import javax.inject.Singleton
 

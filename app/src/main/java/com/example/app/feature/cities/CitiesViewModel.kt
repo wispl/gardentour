@@ -2,7 +2,7 @@ package com.example.app.feature.cities
 
 import androidx.lifecycle.ViewModel
 import com.example.app.data.CitiesRepository
-import com.example.app.data.model.City
+import com.example.app.model.City
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

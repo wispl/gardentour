@@ -1,4 +1,4 @@
-package com.example.app.data.model
+package com.example.app.model
 
 enum class PlaceType {
     Fun,

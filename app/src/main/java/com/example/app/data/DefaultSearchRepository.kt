@@ -1,6 +1,6 @@
 package com.example.app.data
 
-import com.example.app.data.model.Place
+import com.example.app.model.Place
 import com.example.app.database.dao.PlaceDao
 import com.example.app.database.dao.PlaceFtsDao
 import com.example.app.database.model.toExternalModel

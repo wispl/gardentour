@@ -1,7 +1,7 @@
 package com.example.app.data
 
-import com.example.app.data.model.Place
-import com.example.app.data.model.PlaceType
+import com.example.app.model.Place
+import com.example.app.model.PlaceType
 import kotlinx.coroutines.flow.Flow
 
 data class PlaceFilterQuery(

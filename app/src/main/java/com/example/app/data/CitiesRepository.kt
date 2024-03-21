@@ -1,6 +1,6 @@
 package com.example.app.data
 
-import com.example.app.data.model.City
+import com.example.app.model.City
 
 interface CitiesRepository {
 

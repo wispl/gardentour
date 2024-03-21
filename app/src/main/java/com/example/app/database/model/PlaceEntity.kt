@@ -3,8 +3,8 @@ package com.example.app.database.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.app.data.model.Place
-import com.example.app.data.model.PlaceType
+import com.example.app.model.Place
+import com.example.app.model.PlaceType
 
 @Entity(tableName = "places")
 data class PlaceEntity(

@@ -1,7 +1,7 @@
 package com.example.app.database.dao
 
 import androidx.room.*
-import com.example.app.data.model.PlaceType
+import com.example.app.model.PlaceType
 import com.example.app.database.model.PlaceEntity
 import kotlinx.coroutines.flow.Flow
 
