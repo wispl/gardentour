@@ -1,6 +1,5 @@
-package com.example.app.ui
+package com.example.app.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -10,9 +9,9 @@ import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.example.app.model.Place
 import com.example.app.model.PlaceType
 
@@ -23,9 +22,13 @@ fun PlaceCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Card(onClick = onClick, modifier = modifier.padding((12.dp))) {
+    Card(
+        onClick = onClick,
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        modifier = modifier.padding((12.dp))
+    ) {
         Column {
-//            PlaceImageHeader(place.image)
+            PlaceImageHeader(place.image, place.imageCredit)
             Box(modifier = Modifier.padding(18.dp)) {
                 Column {
                     PlaceDescription(place.name, place.description)
@@ -36,13 +39,12 @@ fun PlaceCard(
     }
 }
 
-// TODO: Use Coil
 @Composable
-private fun PlaceImageHeader(image: Int) {
+private fun PlaceImageHeader(image: String, description: String) {
     Box(modifier = Modifier.height(180.dp).fillMaxWidth()) {
-        Image(
-            painter = painterResource(image),
-            contentDescription = "",
+        AsyncImage(
+            model = image,
+            contentDescription = description,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxWidth().height(180.dp)
         )

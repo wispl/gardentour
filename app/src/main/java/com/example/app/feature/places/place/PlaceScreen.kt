@@ -1,6 +1,5 @@
 package com.example.app.feature.places.place
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -15,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -26,7 +24,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.app.ui.PlaceTypes
+import coil.compose.AsyncImage
+import com.example.app.components.PlaceTypes
 
 const val PLACE_ID = "placeId"
 const val PLACE_ROUTE = "place/{$PLACE_ID}"
@@ -76,7 +75,7 @@ private fun PlaceScreen(
         )
 
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-//            PlaceImageHeader(place.image)
+            PlaceImageHeader(place.image, place.imageCredit)
             PlaceAddress(place.address, place.city)
 
             Column(modifier = Modifier.padding(16.dp)) {
@@ -101,15 +100,14 @@ private fun PlaceScreen(
     }
 }
 
-// TODO: Use Coil
 @Composable
-private fun PlaceImageHeader(image: Int) {
+private fun PlaceImageHeader(image: String, imageCredit: String) {
     Box(
         modifier = Modifier.height(240.dp).fillMaxHeight()
     ) {
-        Image(
-            painter = painterResource(image),
-            contentDescription = null,
+        AsyncImage(
+            model = image,
+            contentDescription = imageCredit,
             contentScale = ContentScale.FillWidth,
             modifier = Modifier.fillMaxWidth()
         )

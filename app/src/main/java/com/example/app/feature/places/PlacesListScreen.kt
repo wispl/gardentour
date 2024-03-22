@@ -22,7 +22,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.app.ui.PlaceCard
+import com.example.app.components.PlaceCard
+import com.example.app.components.PlaceCardsList
 
 const val PLACES_LIST_ROUTE = "placesList"
 
@@ -54,9 +55,7 @@ private fun PlacesListScreen(
             }
         }
 
-        LazyColumn {
-            items(places) { PlaceCard(place = it, onClick = { onClick(it.name) }) }
-        }
+        PlaceCardsList(places, onClick)
     }
 }
 

@@ -4,8 +4,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -28,7 +26,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.app.ui.PlaceCard
+import com.example.app.components.PlaceCardsList
 
 const val SEARCH_ROUTE = "search"
 
@@ -58,24 +56,33 @@ private fun SearchScreen(
     val searchResults by viewModel.searchResults.collectAsStateWithLifecycle()
 
     Column {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            IconButton(onClick = onBackClick) {
-                Icon(
-                    imageVector = Icons.Rounded.ArrowBack,
-                    contentDescription = ""
-                )
-            }
+        SearchToolbar(
+            query,
+            onQueryChanged = { viewModel.onQueryChanged(it) },
+            onBackClick = onBackClick
+        )
+        PlaceCardsList(searchResults, onPlaceClick)
+    }
+}
 
-            SearchField( query ) { viewModel.onQueryChanged(it) }
+@Composable
+private fun SearchToolbar(
+    query: String,
+    onQueryChanged: (String) -> Unit,
+    onBackClick: () -> Unit
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        IconButton(onClick = onBackClick) {
+            Icon(
+                imageVector = Icons.Rounded.ArrowBack,
+                contentDescription = ""
+            )
         }
-        LazyColumn {
-            items(searchResults) { place ->
-                PlaceCard(place, { onPlaceClick(place.name) } )
-            }
-        }
+
+        SearchField( query ) { onQueryChanged(it) }
     }
 }
 

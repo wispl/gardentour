@@ -15,7 +15,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.app.ui.PlaceCard
+import com.example.app.components.PlaceCard
 import com.example.app.ui.theme.Typography
 
 const val HOME_ROUTE = "home"
