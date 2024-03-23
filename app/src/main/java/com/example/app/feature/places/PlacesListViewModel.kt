@@ -21,7 +21,11 @@ class PlacesListViewModel @Inject constructor(
     @OptIn(ExperimentalCoroutinesApi::class)
     val places: StateFlow<List<Place>> = activeFilters
         .flatMapLatest {
-            placesRepository.getPlaces(PlaceFilterQuery(types = activeFilters.value))
+            placesRepository.getPlaces(
+                PlaceFilterQuery(
+                    types = activeFilters.value.ifEmpty { null }
+                )
+            )
         }
         .stateIn(
             scope = viewModelScope,
