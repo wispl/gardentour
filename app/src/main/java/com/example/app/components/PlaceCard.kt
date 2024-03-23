@@ -3,7 +3,6 @@ package com.example.app.components
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.runtime.Composable
@@ -65,22 +64,13 @@ private fun PlaceDescription(name: String, description: String) {
 
 @Composable
 fun PlaceTypes(types: Set<PlaceType>) {
-    val containerColor = MaterialTheme.colorScheme.primaryContainer
     Row(
         modifier = Modifier.horizontalScroll(rememberScrollState()),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         types.forEach {
-            TextButton(
-                onClick = {},
-                enabled = true,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = containerColor,
-                    contentColor = contentColorFor(backgroundColor = containerColor)
-                ),
-                shape = RoundedCornerShape(8.dp)
-            ) {
-               Text(it.name)
+            Tag(enabled = true) {
+                Text(it.name)
             }
         }
     }
