@@ -1,8 +1,9 @@
 package com.example.app.database.dao
 
-import androidx.room.*
-import com.example.app.model.PlaceType
+import androidx.room.Dao
+import androidx.room.Query
 import com.example.app.database.model.PlaceEntity
+import com.example.app.model.PlaceType
 import kotlinx.coroutines.flow.Flow
 
 @Dao

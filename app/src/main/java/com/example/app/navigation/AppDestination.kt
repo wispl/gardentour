@@ -14,7 +14,6 @@ import com.example.app.feature.cities.CITIES_ROUTE
 import com.example.app.feature.home.HOME_ROUTE
 import com.example.app.feature.places.PLACES_ROUTE
 import com.example.app.feature.saved.SAVED_ROUTE
-import com.example.app.feature.search.navigateToSearch
 
 enum class AppDestination(
     val text: Int,

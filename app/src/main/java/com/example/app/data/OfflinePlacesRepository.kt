@@ -1,9 +1,9 @@
 package com.example.app.data
 
-import com.example.app.model.Place
 import com.example.app.database.dao.PlaceDao
 import com.example.app.database.model.PlaceEntity
 import com.example.app.database.model.toExternalModel
+import com.example.app.model.Place
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

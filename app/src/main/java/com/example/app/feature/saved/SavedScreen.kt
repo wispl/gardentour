@@ -1,7 +1,6 @@
 package com.example.app.feature.saved
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
