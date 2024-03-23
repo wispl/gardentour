@@ -3,11 +3,13 @@
     "name": "Cape May City",
     "description": "Known as America's Original Seaside Resort, Cape May distinguishes itself in many ways. Visit Cape May and enjoy their pristine beaches, promenade, and all the amenities that make any seashore town worth visiting, along with a rich history and an architectural diversity equal to none.",
     "location": "Cape May, NJ 08204",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Cape_May_Beach_Ave_from_the_sea_3.JPG/1024px-Cape_May_Beach_Ave_from_the_sea_3.JPG",
+    "image_credit": "Smallbones,wikimedia.org,https://en.wikipedia.org/wiki/Cape_May,_New_Jersey#/media/File:Cape_May_Beach_Ave_from_the_sea_3.JPG",
     "website": "https://www.capemay.com/",
     "best_time": "May-September",
     "best_time_reason": "Cape May is at its best between Memorial Day and Labor Day. The summer months attract tons of visitors because the water is warm enough to swim and there are plenty of things to do, so keep in mind you'll have to contend with crowds at most attractions",
     "events": "Cape May Spring Festival (May),Cape May Restaurant Week (June),The MidAtlantic (August),Food and Wine Celebration (September),Cape May Fall Festival (October),Victorian Weekend (October),Cape May Restaurant Weekend (October-November),Christmas Candlelight House Tour (December),Winter Wonderland at Congress Hall (December),Easter Parade (March/April)",
     "more_info": "https://www.capemay.com/,https://www.caperesorts.com/",
-    "info_credit": "capemay.com,travel.usnews.com",
-  },
+    "info_credit": "capemay.com,travel.usnews.com"
+  }
 ]

@@ -12,6 +12,9 @@ data class CityEntity(
     val name: String,
     val description: String,
     val location: String,
+    val image: String,
+    @ColumnInfo(name = "image_credit")
+    val imageCredit: String,
     val website: String,
     @ColumnInfo(name = "best_time")
     val bestTime: String,
@@ -29,6 +32,8 @@ fun CityEntity.toExternalModel() = City(
     name = name,
     description = description,
     location = location,
+    image = image,
+    imageCredit = imageCredit,
     website = website,
     bestTime = bestTime,
     bestTimeReason = bestTimeReason,
