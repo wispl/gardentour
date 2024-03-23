@@ -18,10 +18,10 @@ private fun CitiesScreen(
     onClick: (String) -> Unit,
     viewModel: CitiesViewModel = hiltViewModel()
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val cities by viewModel.cities.collectAsStateWithLifecycle()
     Column {
         LazyColumn {
-            items(uiState.cities) {
+            items(cities) {
                 Text(it.name)
             }
         }

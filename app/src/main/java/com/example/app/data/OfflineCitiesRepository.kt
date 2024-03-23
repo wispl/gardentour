@@ -1,19 +1,24 @@
 package com.example.app.data
 
-import com.example.app.data.datasource.CitiesDatasource
+import com.example.app.database.dao.CityDao
+import com.example.app.database.model.CityEntity
+import com.example.app.database.model.toExternalModel
 import com.example.app.model.City
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class OfflineCitiesRepository @Inject constructor(): CitiesRepository {
-    // TODO: Add proper image later
-    private val citieDatasource = CitiesDatasource()
-    override fun getCity(name: String): City {
-        return citieDatasource.cities[name]!!
+class OfflineCitiesRepository @Inject constructor(
+    private val cityDao: CityDao
+): CitiesRepository {
+    override fun getCity(name: String): Flow<City> {
+        return cityDao.getCity(name).map(CityEntity::toExternalModel)
     }
 
-    override fun allCities(): List<City> {
-        return citieDatasource.cities.values.toList()
+    override fun getCities(): Flow<List<City>> {
+        return cityDao.getCities()
+            .map{ it.map(CityEntity::toExternalModel) }
     }
 }

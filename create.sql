@@ -1,7 +1,7 @@
 -- script to create places sqlite database from a json file
 -- run using sqlite3 database.db < create.sql
--- TODO: Investigate if it is better to create a new database or drop and
--- modifiy it
+
+-- Places Table
 
 CREATE TABLE places(
 	id INTEGER PRIMARY KEY NOT NULL,
@@ -17,7 +17,6 @@ CREATE TABLE places(
 	price TEXT NOT NULL
 );
 
--- TODO: Decide if we want to perform fts over description as well
 CREATE VIRTUAL TABLE places_fts USING fts4(
 	name NOT NULL,
 	address NOT NULL,
@@ -56,3 +55,39 @@ FROM json_each(readfile('places.json'));
 
 DROP TRIGGER place_ai;
 
+-- Cities Table
+
+CREATE TABLE cities(
+	id INTEGER PRIMARY KEY NOT NULL,
+	name TEXT NOT NULL,
+	description TEXT NOT NULL,
+	location TEXT NOT NULL,
+	website TEXT NOT NULL,
+	best_time TEXT NOT NULL,
+	best_time_reason TEXT NOT NULL,
+	events TEXT NOT NULL,
+	more_info TEXT NOT NULL,
+	info_credit TEXT NOT NULL
+);
+
+INSERT INTO cities(
+	name,
+	description,
+	location,
+	website,
+	best_time,
+	best_time_reason,
+	events,
+	more_info,
+	info_credit
+) SELECT
+	json_extract(value, '$.name'),
+	json_extract(value, '$.description'),
+	json_extract(value, '$.location'),
+	json_extract(value, '$.website'),
+	json_extract(value, '$.best_time'),
+	json_extract(value, '$.best_time_reason'),
+	json_extract(value, '$.events'),
+	json_extract(value, '$.more_info'),
+	json_extract(value, '$.info_credit')
+FROM json_each(readfile('cities.json'));
