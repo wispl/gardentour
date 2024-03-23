@@ -38,5 +38,5 @@ interface PlaceDao {
     fun getPlace(name: String) : Flow<PlaceEntity>
 
     @Query(value = "SELECT * FROM places ORDER BY RANDOM() LIMIT 1")
-    fun getRandomPlace(): PlaceEntity
+    fun getRandomPlace(): Flow<PlaceEntity>
 }
