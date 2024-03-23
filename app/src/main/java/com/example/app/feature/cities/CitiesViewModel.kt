@@ -20,5 +20,3 @@ class CitiesViewModel @Inject constructor(
             initialValue = emptyList()
         )
 }
-
-sealed interface CitiesUIState
