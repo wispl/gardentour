@@ -40,7 +40,7 @@ fun NavGraphBuilder.placeScreen(onNavigationClick: () -> Unit) {
             }
         )
     ) {
-        PlaceScreen(onNavigationClick)
+        PlaceRoute(onNavigationClick)
     }
 }
 
@@ -52,14 +52,21 @@ class PlaceArgs(val placeId: String) {
     constructor(savedStateHandle: SavedStateHandle) : this(checkNotNull(savedStateHandle[PLACE_ID]) as String)
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun PlaceScreen(
+private fun PlaceRoute(
     onNavigationClick: () -> Unit,
     viewModel: PlaceDetailViewModel = hiltViewModel()
 ) {
-    val state by viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    PlaceScreen(uiState, onNavigationClick)
+}
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun PlaceScreen(
+    placeUIState: PlaceUIState,
+    onNavigationClick: () -> Unit,
+) {
     Column(modifier = Modifier.fillMaxSize()) {
         CenterAlignedTopAppBar(
             title = { Text("Detail") },
@@ -73,14 +80,13 @@ private fun PlaceScreen(
             },
         )
 
-        when (state) {
+        when (placeUIState) {
             PlaceUIState.Error -> TODO()
             PlaceUIState.Loading -> {
                 CircularProgressIndicator()
             }
             is PlaceUIState.Success -> {
-                val place = (state as PlaceUIState.Success).place
-                PlaceInformation(place)
+                PlaceInformation(placeUIState.place)
             }
         }
     }
@@ -200,7 +206,7 @@ private fun PlaceDetails(hours: String, price: String) {
 
         Column(verticalArrangement = Arrangement.Center) {
             Text(price)
-            Text(hours.toString())
+            Text(hours)
         }
     }
 }
