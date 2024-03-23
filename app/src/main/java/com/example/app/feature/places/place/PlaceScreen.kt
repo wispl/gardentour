@@ -26,6 +26,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import coil.compose.AsyncImage
 import com.example.app.components.PlaceTypes
+import com.example.app.model.Place
 
 const val PLACE_ID = "placeId"
 const val PLACE_ROUTE = "place/{$PLACE_ID}"
@@ -58,8 +59,6 @@ private fun PlaceScreen(
     viewModel: PlaceDetailViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
-    // TODO: Fix this later
-    val place = state!!.place
 
     Column(modifier = Modifier.fillMaxSize()) {
         CenterAlignedTopAppBar(
@@ -74,28 +73,42 @@ private fun PlaceScreen(
             },
         )
 
-        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-            PlaceImageHeader(place.image, place.imageCredit)
-            PlaceAddress(place.address, place.city)
-
-            Column(modifier = Modifier.padding(16.dp)) {
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    // Use weight to prioritize size calculation of Button first
-                    PlaceName(place.name, modifier = Modifier.weight(1f))
-                    PlaceWebsiteButton(place.website)
-                }
-                Spacer(modifier = Modifier.padding(8.dp))
-                PlaceTypes(place.types)
-
-                Spacer(modifier = Modifier.padding(8.dp))
-                PlaceDescription(place.description)
-
-                Spacer(modifier = Modifier.height(8.dp))
-                PlaceDetails(place.hours, place.price)
+        when (state) {
+            PlaceUIState.Error -> TODO()
+            PlaceUIState.Loading -> {
+                CircularProgressIndicator()
             }
+            is PlaceUIState.Success -> {
+                val place = (state as PlaceUIState.Success).place
+                PlaceInformation(place)
+            }
+        }
+    }
+}
+
+@Composable
+private fun PlaceInformation(place: Place) {
+    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+        PlaceImageHeader(place.image, place.imageCredit)
+        PlaceAddress(place.address, place.city)
+
+        Column(modifier = Modifier.padding(16.dp)) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                // Use weight to prioritize size calculation of Button first
+                PlaceName(place.name, modifier = Modifier.weight(1f))
+                PlaceWebsiteButton(place.website)
+            }
+            Spacer(modifier = Modifier.padding(8.dp))
+            PlaceTypes(place.types)
+
+            Spacer(modifier = Modifier.padding(8.dp))
+            PlaceDescription(place.description)
+
+            Spacer(modifier = Modifier.height(8.dp))
+            PlaceDetails(place.hours, place.price)
         }
     }
 }
