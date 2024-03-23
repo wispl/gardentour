@@ -3,6 +3,7 @@ package com.example.app.feature.home
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -20,12 +21,26 @@ import com.example.app.ui.theme.Typography
 
 const val HOME_ROUTE = "home"
 
+fun NavGraphBuilder.homeScreen(onPlaceClick: (String) -> Unit) {
+    composable(route = HOME_ROUTE) {
+        HomeRoute(onPlaceClick)
+    }
+}
+
 @Composable
-private fun HomeScreen(
+private fun HomeRoute(
     onClick: (String) -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
-    val place by viewModel.place.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    HomeScreen(uiState, onClick)
+}
+
+@Composable
+private fun HomeScreen(
+    homeUiState: HomeUIState,
+    onClick: (String) -> Unit,
+) {
     Column {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -45,13 +60,15 @@ private fun HomeScreen(
                 modifier = Modifier.padding(12.dp, 8.dp)
             )
 
-            PlaceCard(place, { onClick(place.name) })
+            when (homeUiState) {
+                HomeUIState.Loading -> {
+                    CircularProgressIndicator()
+                }
+                is HomeUIState.Success -> {
+                    PlaceCard(homeUiState.place, { onClick(homeUiState.place.name) })
+                }
+                HomeUIState.Error -> TODO()
+            }
         }
-    }
-}
-
-fun NavGraphBuilder.homeScreen(onPlaceClick: (String) -> Unit) {
-    composable(route = HOME_ROUTE) {
-        HomeScreen(onPlaceClick)
     }
 }
