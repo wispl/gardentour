@@ -4,7 +4,7 @@
 -- modifiy it
 
 CREATE TABLE places(
-	id INTEGER PRIMARY KEY,
+	id INTEGER PRIMARY KEY NOT NULL,
 	name TEXT NOT NULL,
 	description TEXT NOT NULL,
 	address TEXT NOT NULL,
@@ -19,16 +19,15 @@ CREATE TABLE places(
 
 -- TODO: Decide if we want to perform fts over description as well
 CREATE VIRTUAL TABLE places_fts USING fts4(
-	content='places',
-	name,
-	address,
-	city
+	name NOT NULL,
+	address NOT NULL,
+	city NOT NULL
 );
 
 CREATE TRIGGER place_ai AFTER INSERT ON places
 	BEGIN
-		INSERT INTO places_fts (rowid, name, address, city)
-		VALUES (new.id, new.name, new.address, new.city);
+		INSERT INTO places_fts (name, address, city)
+		VALUES (new.name, new.address, new.city);
 	END;
 
 INSERT INTO places(
