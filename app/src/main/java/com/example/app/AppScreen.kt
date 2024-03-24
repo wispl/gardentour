@@ -14,7 +14,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.app.feature.cities.CITIES_ROUTE
+import com.example.app.feature.cities.CITIES_LIST_ROUTE
 import com.example.app.feature.home.HOME_ROUTE
 import com.example.app.feature.places.PLACES_LIST_ROUTE
 import com.example.app.feature.saved.SAVED_ROUTE
@@ -70,10 +70,11 @@ fun AppScreen(navController: NavHostController = rememberNavController()) {
     val destination = when(current?.route) {
         HOME_ROUTE -> AppDestination.Home
         PLACES_LIST_ROUTE -> AppDestination.Places
-        CITIES_ROUTE -> AppDestination.Cities
+        CITIES_LIST_ROUTE -> AppDestination.Cities
         SAVED_ROUTE -> AppDestination.Saved
         else -> null
     }
+    println(destination)
 
     Scaffold(bottomBar = { AppBottomBar(navController) }) { padding ->
         Row(

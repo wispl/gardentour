@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
-class CitiesViewModel @Inject constructor(
+class CitiesListViewModel @Inject constructor(
     citiesRepository: CitiesRepository
 ) : ViewModel() {
     val cities = citiesRepository

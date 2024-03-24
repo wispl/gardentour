@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.example.app.feature.cities.citiesScreen
+import com.example.app.feature.cities.city.navigateToCity
 import com.example.app.feature.home.HOME_ROUTE
 import com.example.app.feature.home.homeScreen
 import com.example.app.feature.places.place.navigateToPlace
@@ -32,7 +33,10 @@ fun AppNavHost(
             onPlaceClick = navController::navigateToPlace,
             onBackClick = navController::navigateUp
         )
-        citiesScreen(navController::navigateToPlace)
+        citiesScreen(
+            onCityClick = navController::navigateToCity,
+            onBackClick = navController::navigateUp
+        )
         savedScreen()
     }
 }
