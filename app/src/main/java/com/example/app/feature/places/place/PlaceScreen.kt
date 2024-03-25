@@ -5,7 +5,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Place
-import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material.icons.rounded.Favorite
+import androidx.compose.material.icons.rounded.FavoriteBorder
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -25,6 +26,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import coil.compose.AsyncImage
+import com.example.app.components.BackNavTopBar
 import com.example.app.components.PlaceTypes
 import com.example.app.model.Place
 
@@ -58,28 +60,20 @@ private fun PlaceRoute(
     viewModel: PlaceDetailViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    PlaceScreen(uiState, onNavigationClick)
+    PlaceScreen(
+        placeUIState = uiState,
+        onBackClick = onNavigationClick,
+        onSavedClick = { viewModel.setSavedPlace(it) }
+    )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun PlaceScreen(
     placeUIState: PlaceUIState,
-    onNavigationClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onSavedClick: (Boolean) -> Unit,
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
-        CenterAlignedTopAppBar(
-            title = { Text("Detail") },
-            navigationIcon = {
-                IconButton(onClick = onNavigationClick) {
-                    Icon(
-                        imageVector = Icons.Rounded.ArrowBack,
-                        contentDescription = ""
-                    )
-                }
-            },
-        )
-
         when (placeUIState) {
             PlaceUIState.Error -> TODO()
             PlaceUIState.Loading -> {
@@ -87,6 +81,17 @@ private fun PlaceScreen(
             }
 
             is PlaceUIState.Success -> {
+                val icon = if (placeUIState.isSaved) {
+                    Icons.Rounded.Favorite
+                } else {
+                    Icons.Rounded.FavoriteBorder
+                }
+                BackNavTopBar(
+                    text = "Place Detail",
+                    imageVector = icon,
+                    onBackClick = onBackClick,
+                    onActionClick = { onSavedClick(!placeUIState.isSaved) }
+                )
                 PlaceInformation(placeUIState.place)
             }
         }
