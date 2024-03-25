@@ -17,4 +17,7 @@ abstract class DataModule {
 
     @Binds
     abstract fun bindsCityRepository(cityRepository: OfflineCitiesRepository): CitiesRepository
+
+    @Binds
+    abstract fun bindsUserDataRepository(userDataRepository: DefaultUserDataRepository): UserDataRepository
 }

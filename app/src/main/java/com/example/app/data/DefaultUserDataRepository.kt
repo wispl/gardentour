@@ -1,6 +1,5 @@
-package com.example.app.data.di
+package com.example.app.data
 
-import com.example.app.data.UserDataRepository
 import com.example.app.database.model.UserData
 import com.example.app.datastore.PreferencesDataSource
 import kotlinx.coroutines.flow.Flow
