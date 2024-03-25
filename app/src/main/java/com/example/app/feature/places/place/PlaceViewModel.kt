@@ -7,10 +7,8 @@ import com.example.app.data.PlacesRepository
 import com.example.app.data.UserDataRepository
 import com.example.app.model.Place
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,7 +20,6 @@ class PlaceDetailViewModel @Inject constructor(
 
     private val placeArgs = PlaceArgs(savedStateHandle)
     private val placeId = placeArgs.placeId
-    private val test = MutableStateFlow(true)
 
     val uiState = placeUIState(
         placeId = placeArgs.placeId,
