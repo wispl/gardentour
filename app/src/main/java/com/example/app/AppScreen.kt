@@ -62,7 +62,6 @@ fun AppTopBar(
     )
 }
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun AppScreen(navController: NavHostController = rememberNavController()) {
     val backStackEntry by navController.currentBackStackEntryAsState()
@@ -74,7 +73,6 @@ fun AppScreen(navController: NavHostController = rememberNavController()) {
         SAVED_ROUTE -> AppDestination.Saved
         else -> null
     }
-    println(destination)
 
     Scaffold(bottomBar = { AppBottomBar(navController) }) { padding ->
         Row(
