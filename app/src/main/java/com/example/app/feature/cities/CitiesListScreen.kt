@@ -2,7 +2,8 @@ package com.example.app.feature.cities
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
@@ -13,9 +14,10 @@ const val CITIES_LIST_ROUTE = "citiesList"
 
 fun NavGraphBuilder.citiesListScreen(onCityClick: (String) -> Unit) {
     composable(route = CITIES_LIST_ROUTE) {
-        CitiesListScreen( { onCityClick(it) })
+        CitiesListScreen({ onCityClick(it) })
     }
 }
+
 @Composable
 private fun CitiesListScreen(
     onCityClick: (String) -> Unit,

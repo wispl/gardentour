@@ -14,7 +14,7 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
     val uiState = placesRepository
         .getRandomPlace()
-        .map { HomeUIState.Success(it)  }
+        .map { HomeUIState.Success(it) }
         .onStart { HomeUIState.Loading }
         .catch { HomeUIState.Error }
         .stateIn(
@@ -27,5 +27,5 @@ class HomeViewModel @Inject constructor(
 sealed interface HomeUIState {
     data class Success(val place: Place) : HomeUIState
     data object Error : HomeUIState
-    data object Loading: HomeUIState
+    data object Loading : HomeUIState
 }

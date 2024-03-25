@@ -35,7 +35,7 @@ private fun placeUIState(
     placeId: String,
     isFavorited: Flow<Boolean>,
     placesRepository: PlacesRepository
-) : Flow<PlaceUIState> {
+): Flow<PlaceUIState> {
     val place = placesRepository.getPlace(placeId)
 
     return combine(place, isFavorited, ::Pair)

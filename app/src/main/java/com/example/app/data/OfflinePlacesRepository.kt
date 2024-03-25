@@ -12,7 +12,7 @@ import javax.inject.Singleton
 @Singleton
 class OfflinePlacesRepository @Inject constructor(
     private val placeDao: PlaceDao
-) : PlacesRepository{
+) : PlacesRepository {
     override fun getAllPlaces(): Flow<List<Place>> {
         return placeDao.getPlaces().map { it.map(PlaceEntity::toExternalModel) }
     }
@@ -24,7 +24,7 @@ class OfflinePlacesRepository @Inject constructor(
             useCityFilter = filterQuery.city != null,
             cityFilter = filterQuery.city ?: ""
         )
-        .map { it.map(PlaceEntity::toExternalModel) }
+            .map { it.map(PlaceEntity::toExternalModel) }
     }
 
     override fun getPlace(name: String): Flow<Place> {

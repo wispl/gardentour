@@ -10,11 +10,11 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 abstract class DataModule {
     @Binds
-    abstract fun bindsPlacesRepository(placesRepository: OfflinePlacesRepository) : PlacesRepository
+    abstract fun bindsPlacesRepository(placesRepository: OfflinePlacesRepository): PlacesRepository
 
     @Binds
-    abstract fun bindsSearchRepository(searchRepository: DefaultSearchRepository) : SearchRepository
+    abstract fun bindsSearchRepository(searchRepository: DefaultSearchRepository): SearchRepository
 
     @Binds
-    abstract fun bindsCityRepository(cityRepository: OfflineCitiesRepository) : CitiesRepository
+    abstract fun bindsCityRepository(cityRepository: OfflineCitiesRepository): CitiesRepository
 }

@@ -67,7 +67,7 @@ fun AppTopBar(
 fun AppScreen(navController: NavHostController = rememberNavController()) {
     val backStackEntry by navController.currentBackStackEntryAsState()
     val current = backStackEntry?.destination
-    val destination = when(current?.route) {
+    val destination = when (current?.route) {
         HOME_ROUTE -> AppDestination.Home
         PLACES_LIST_ROUTE -> AppDestination.Places
         CITIES_LIST_ROUTE -> AppDestination.Cities

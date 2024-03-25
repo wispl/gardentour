@@ -7,18 +7,20 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CityDao {
-    @Query(value = """
+    @Query(
+        value = """
         SELECT * FROM cities
         WHERE 
             CASE WHEN :useNamesFilter
                 THEN name in (:namesFilter)
                 ELSE 1
             END
-    """)
+    """
+    )
     fun getCities(
         useNamesFilter: Boolean = false,
         namesFilter: Set<String> = emptySet()
-    ) : Flow<List<CityEntity>>
+    ): Flow<List<CityEntity>>
 
     @Query(value = "SELECT * FROM cities WHERE name = :name")
     fun getCity(name: String): Flow<CityEntity>

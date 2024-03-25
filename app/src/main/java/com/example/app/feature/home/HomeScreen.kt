@@ -48,7 +48,7 @@ private fun HomeScreen(
         ) {
             Text(
                 "Check out these places",
-                style = Typography.titleMedium ,
+                style = Typography.titleMedium,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(top = 24.dp)
@@ -64,9 +64,11 @@ private fun HomeScreen(
                 HomeUIState.Loading -> {
                     CircularProgressIndicator()
                 }
+
                 is HomeUIState.Success -> {
                     PlaceCard(homeUiState.place, { onClick(homeUiState.place.name) })
                 }
+
                 HomeUIState.Error -> TODO()
             }
         }

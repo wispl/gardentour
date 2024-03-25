@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PlacesListViewModel @Inject constructor(
     private val placesRepository: PlacesRepository
-): ViewModel() {
+) : ViewModel() {
     private val _activeFilters = MutableStateFlow(setOf<PlaceType>())
     val activeFilters = _activeFilters.asStateFlow()
 

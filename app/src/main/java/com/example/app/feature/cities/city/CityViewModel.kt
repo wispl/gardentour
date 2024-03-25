@@ -38,7 +38,7 @@ private fun cityUIState(
     isFavorited: Flow<Boolean>,
     citiesRepository: CitiesRepository,
     placesRepository: PlacesRepository
-) : Flow<CityUIState> {
+): Flow<CityUIState> {
     val city = citiesRepository.getCity(cityId)
 
     return combine(city, isFavorited, ::Pair)
@@ -52,6 +52,7 @@ sealed interface CityUIState {
         val city: City,
         val isFavorited: Boolean,
     ) : CityUIState
+
     data object Error : CityUIState
     data object Loading : CityUIState
 }

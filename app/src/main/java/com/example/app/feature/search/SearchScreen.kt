@@ -82,7 +82,7 @@ private fun SearchToolbar(
             )
         }
 
-        SearchField( query ) { onQueryChanged(it) }
+        SearchField(query) { onQueryChanged(it) }
     }
 }
 
@@ -102,10 +102,12 @@ private fun SearchField(
         value = query,
         onValueChange = { onQueryChanged(it) },
         shape = RoundedCornerShape(32.dp),
-        leadingIcon = { Icon(
-            imageVector = Icons.Default.Search,
-            contentDescription = ""
-        ) },
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Default.Search,
+                contentDescription = ""
+            )
+        },
         maxLines = 1,
         singleLine = true,
         modifier = Modifier

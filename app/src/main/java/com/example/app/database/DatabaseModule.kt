@@ -15,7 +15,7 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun providesAppDatabase(@ApplicationContext context: Context): AppDatabase {
-        return databaseBuilder( context, AppDatabase::class.java, "app_database")
+        return databaseBuilder(context, AppDatabase::class.java, "app_database")
             .createFromAsset("database.db")
             .fallbackToDestructiveMigration()
             .build()

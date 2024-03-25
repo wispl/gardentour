@@ -16,7 +16,7 @@ class DefaultSearchRepository @Inject constructor(
     @OptIn(ExperimentalCoroutinesApi::class)
     override fun search(query: String): Flow<List<Place>> {
         return placeFtsDao.searchPlaces("*$query*")
-            .mapLatest { it.toSet()}
+            .mapLatest { it.toSet() }
             .distinctUntilChanged()
             .flatMapLatest {
                 placeDao.getPlaces(useNamesFilter = true, namesFilter = it)

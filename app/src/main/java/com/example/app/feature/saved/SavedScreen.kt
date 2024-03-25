@@ -29,7 +29,7 @@ fun SavedScreen() {
                 Tab(
                     content = { Text(title) },
                     selected = (tab == index),
-                    onClick = { tab = index}
+                    onClick = { tab = index }
                 )
             }
         }

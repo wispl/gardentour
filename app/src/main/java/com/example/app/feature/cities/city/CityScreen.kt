@@ -21,8 +21,11 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.*
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import coil.compose.AsyncImage
 import com.example.app.R
 import com.example.app.components.Tag
@@ -86,6 +89,7 @@ private fun CityScreen(
             CityUIState.Loading -> {
                 CircularProgressIndicator()
             }
+
             is CityUIState.Success -> {
                 CityContent(cityUIState.city)
             }

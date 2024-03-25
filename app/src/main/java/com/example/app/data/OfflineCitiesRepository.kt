@@ -12,13 +12,13 @@ import javax.inject.Singleton
 @Singleton
 class OfflineCitiesRepository @Inject constructor(
     private val cityDao: CityDao
-): CitiesRepository {
+) : CitiesRepository {
     override fun getCity(name: String): Flow<City> {
         return cityDao.getCity(name).map(CityEntity::toExternalModel)
     }
 
     override fun getCities(): Flow<List<City>> {
         return cityDao.getCities()
-            .map{ it.map(CityEntity::toExternalModel) }
+            .map { it.map(CityEntity::toExternalModel) }
     }
 }

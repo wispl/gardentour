@@ -12,11 +12,11 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 object DaosModule {
     @Provides
-    fun providesPlaceDao(database: AppDatabase) : PlaceDao = database.placeDao()
+    fun providesPlaceDao(database: AppDatabase): PlaceDao = database.placeDao()
 
     @Provides
-    fun providesPlaceFtsDao(database: AppDatabase) : PlaceFtsDao = database.placeFtsDao()
+    fun providesPlaceFtsDao(database: AppDatabase): PlaceFtsDao = database.placeFtsDao()
 
     @Provides
-    fun providesCityDao(database: AppDatabase) : CityDao = database.cityDao()
+    fun providesCityDao(database: AppDatabase): CityDao = database.cityDao()
 }

@@ -85,6 +85,7 @@ private fun PlaceScreen(
             PlaceUIState.Loading -> {
                 CircularProgressIndicator()
             }
+
             is PlaceUIState.Success -> {
                 PlaceInformation(placeUIState.place)
             }
