@@ -37,6 +37,9 @@ fun AppNavHost(
             onCityClick = navController::navigateToCity,
             onBackClick = navController::navigateUp
         )
-        savedScreen()
+        savedScreen(
+            onPlaceClick = navController::navigateToPlace,
+            onCityClick = navController::navigateToCity,
+        )
     }
 }
