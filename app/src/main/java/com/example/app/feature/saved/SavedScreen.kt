@@ -43,7 +43,7 @@ fun SavedScreen(
     val tabs = listOf("Places", "Cities")
     Column(modifier = Modifier.fillMaxWidth()) {
         TabRow(selectedTabIndex = tab) {
-            tabs.forEachIndexed() { index, title ->
+            tabs.forEachIndexed { index, title ->
                 Tab(
                     content = {
                         Text(title, modifier = Modifier.padding(8.dp))
