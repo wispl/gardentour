@@ -202,5 +202,41 @@
     "website": "https://staintons.com/",
     "price": "Free Entry",
     "hours": "Hours Vary by seasons"
+  },
+  {
+    "name": "5 West Pub",
+    "description": "Pub with calm atmosphere and great food and cocktails. Includes a big screen too",
+    "address": "3729 Bayshore Road",
+    "city": "Cape May City",
+    "image": "https://i0.wp.com/www.capemay.com/restaurants/wp/wp-content/uploads/img_0132.jpg",
+    "image_credit": "capemay.com",
+    "types": "Food",
+    "website": "https://www.capemay.com/restaurants/5-west-pub",
+    "price": "See Menu",
+    "hours": "11:30 AM – 10 PM"
+  },
+  {
+    "name": "SeaSalt Restaurant",
+    "description": "SeaSalt Restaurant boasts a distinctive fine-dining experience without the fuss: unparalleled beachfront setting, vibrant energy, an impressive menu with something for everyone, along with signature cocktails, a diverse wine list, and truly genuine hospitality.",
+    "address": "1035 Beach Avenue, at the Ocean Club Hotel",
+    "city": "Cape May City",
+    "image": "https://i0.wp.com/www.capemay.com/restaurants/wp/wp-content/uploads/SeaSaltJuly201713.jpg",
+    "image_credit": "capemay.com",
+    "types": "Food",
+    "website": "https://capemayoceanclubhotel.com/seasalt-restaurant/",
+    "price": "See Menu",
+    "hours": "Open Daily Monday-Sunday until October 21\n\nBreakfast 8am-11:30am\nLunch starts at 12pm-4pm\nDinner 5pm-9:00pm\nTiki Ten35 outdoor bar opens 11am (Tiki food menu 12pm-4pm & 5-close)\nSeaSalt indoor bar 5pm-9:00pm\nStarting October 22 – Open Friday-Sunday\n\nFridays – Dinner 5pm-9:00pm | SeaSalt indoor bar 5pm-9:00pm\nSaturday\nBreakfast 8am-11:30am | Lunch starting at 12pm | Dinner 5pm-9:00pm | SeaSalt indoor bar 5pm-9:00pm\nSunday – Breakfast 8am-11:30am"
+  },
+  {
+    "name": "Tisha's",
+    "description": "SeaSalt Restaurant boasts a distinctive fine-dining experience without the fuss: unparalleled beachfront setting, vibrant energy, an impressive menu with something for everyone, along with signature cocktails, a diverse wine list, and truly genuine hospitality.",
+    "address": "322 Washington St",
+    "city": "Cape May City",
+    "image": "https://i0.wp.com/www.capemay.com/restaurants/wp/wp-content/uploads/SeaSaltJuly201713.jpg",
+    "image_credit": "capemay.com",
+    "types": "Food",
+    "website": "https://tishasfinedining.com",
+    "price": "See Menu (ranges $20-$25)",
+    "hours": "11:00 AM - 2:15 PM"
   }
 ]

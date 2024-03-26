@@ -11,5 +11,18 @@
     "events": "Cape May Spring Festival (May),Cape May Restaurant Week (June),The MidAtlantic (August),Food and Wine Celebration (September),Cape May Fall Festival (October),Victorian Weekend (October),Cape May Restaurant Weekend (October-November),Christmas Candlelight House Tour (December),Winter Wonderland at Congress Hall (December),Easter Parade (March/April)",
     "more_info": "https://www.caperesorts.com/",
     "info_credit": "capemay.com,travel.usnews.com"
+  },
+  {
+    "name": "Ocean City",
+    "description": "Ocean City attracts families every summer with the arcades, amusement parks, restaurants, shops and more that line the iconic boardwalk. In the warmer weather, the city attracts crowds who gathered at the boardwalk for various events. The boardwalk is fulled of attractions such as amusement parks and sightseeing.",
+    "location": "21842–21843",
+    "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/65/Ocean_City_Maryland_USA_2018-07-14.png/1920px-Ocean_City_Maryland_USA_2018-07-14.png",
+    "image_credit": "Drngogo,wikimedia.org,https://en.wikipedia.org/wiki/Ocean_City,_Maryland#/media/File:Ocean_City_Maryland_USA_2018-07-14.png",
+    "website": "https://www.oceancity.com/",
+    "best_time": "Summer",
+    "best_time_reason": "Average high temperatures range from 67 to 81 degrees during the peak tourist season, providing the perfect environment for soaking up the sun and strolling on the boardwalk. ",
+    "events": "",
+    "more_info": "https://www.caperesorts.com/",
+    "info_credit": "oceancity.com,travel.usnews.com"
   }
 ]
