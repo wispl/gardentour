@@ -80,7 +80,10 @@ private fun CityScreen(
     Column(modifier = Modifier.fillMaxSize()) {
         when (cityUIState) {
             CityUIState.Error -> TODO()
-            CityUIState.Loading -> { CircularProgressIndicator() }
+            CityUIState.Loading -> {
+                CircularProgressIndicator()
+            }
+
             is CityUIState.Success -> {
                 val icon = if (cityUIState.isSaved) {
                     Icons.Rounded.Favorite

@@ -12,9 +12,9 @@ fun CityCardsList(
     onCityClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-     LazyColumn(modifier) {
-         items(cities) {
-             CityCard(it, { onCityClick(it.name) })
-         }
-     }
+    LazyColumn(modifier) {
+        items(cities) {
+            CityCard(it, { onCityClick(it.name) })
+        }
+    }
 }

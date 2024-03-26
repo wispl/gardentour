@@ -5,7 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.app.data.CitiesRepository
 import com.example.app.data.PlacesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel

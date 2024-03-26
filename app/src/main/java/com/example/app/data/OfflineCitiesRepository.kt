@@ -37,7 +37,7 @@ class OfflineCitiesRepository @Inject constructor(
                         cityDao.getCities(
                             useNamesFilter = true,
                             namesFilter = followedCities,
-                        ) .map { it.map { entity -> entity.toExternalModel() } }
+                        ).map { it.map { entity -> entity.toExternalModel() } }
                     }
                 }
             }

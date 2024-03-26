@@ -58,10 +58,12 @@ private fun cityUIState(
     val userData = userDataRepository.userData.map { it.savedCities }
 
     return combine(city, places, userData, ::Triple)
-        .map { CityUIState.Success(
-            city = it.first,
-            places = it.second,
-            isSaved = cityId in it.third)
+        .map {
+            CityUIState.Success(
+                city = it.first,
+                places = it.second,
+                isSaved = cityId in it.third
+            )
         }
         .onStart { CityUIState.Loading }
         .catch { CityUIState.Error }

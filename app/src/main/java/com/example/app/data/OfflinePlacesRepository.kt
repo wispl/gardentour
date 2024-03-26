@@ -31,7 +31,7 @@ class OfflinePlacesRepository @Inject constructor(
                         placeDao.getPlaces(
                             useNamesFilter = true,
                             namesFilter = followedPlaces,
-                        ) .map { it.map { entity -> entity.toExternalModel() } }
+                        ).map { it.map { entity -> entity.toExternalModel() } }
                     }
                 }
             }
