@@ -6,7 +6,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material.icons.rounded.Favorite
+import androidx.compose.material.icons.rounded.FavoriteBorder
 import androidx.compose.material.icons.rounded.Place
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -28,6 +29,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import coil.compose.AsyncImage
 import com.example.app.R
+import com.example.app.components.BackNavTopBar
 import com.example.app.components.Tag
 import com.example.app.model.City
 
@@ -58,39 +60,39 @@ class CityArgs(val cityId: String) {
 
 @Composable
 private fun CityRoute(
-    onNavigationClick: () -> Unit,
+    onBackClick: () -> Unit,
     viewModel: CityViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    CityScreen(uiState, onNavigationClick)
+    CityScreen(
+        cityUIState = uiState,
+        onBackClick = onBackClick,
+        onSavedClick = { viewModel.setSavedCity(it) }
+    )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun CityScreen(
     cityUIState: CityUIState,
-    onNavigationClick: () -> Unit,
+    onBackClick: () -> Unit,
+    onSavedClick: (Boolean) -> Unit
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
-        CenterAlignedTopAppBar(
-            title = { Text("City Details") },
-            navigationIcon = {
-                IconButton(onClick = onNavigationClick) {
-                    Icon(
-                        imageVector = Icons.Rounded.ArrowBack,
-                        contentDescription = ""
-                    )
-                }
-            },
-        )
-
         when (cityUIState) {
             CityUIState.Error -> TODO()
-            CityUIState.Loading -> {
-                CircularProgressIndicator()
-            }
-
+            CityUIState.Loading -> { CircularProgressIndicator() }
             is CityUIState.Success -> {
+                val icon = if (cityUIState.isSaved) {
+                    Icons.Rounded.Favorite
+                } else {
+                    Icons.Rounded.FavoriteBorder
+                }
+                BackNavTopBar(
+                    text = "City Details",
+                    imageVector = icon,
+                    onBackClick = onBackClick,
+                    onActionClick = { onSavedClick(!cityUIState.isSaved) }
+                )
                 CityContent(cityUIState.city)
             }
         }
