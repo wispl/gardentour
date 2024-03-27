@@ -6,17 +6,13 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Favorite
-import androidx.compose.material.icons.rounded.FavoriteBorder
-import androidx.compose.material.icons.rounded.Place
+import androidx.compose.material.icons.rounded.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -31,7 +27,9 @@ import coil.compose.AsyncImage
 import com.example.app.R
 import com.example.app.components.BackNavTopBar
 import com.example.app.components.Tag
+import com.example.app.components.VisitButton
 import com.example.app.model.City
+import com.example.app.model.Place
 
 const val CITY_ID = "cityId"
 const val CITY_ROUTE_BASE = "city"
@@ -120,13 +118,21 @@ private fun CityContent(city: City) {
             CityHeader(city.name, city.location, city.website)
             Spacer(modifier = Modifier.padding(4.dp))
 
+            Text(
+                text = city.description,
+                style = MaterialTheme.typography.bodyLarge,
+            )
             Spacer(modifier = Modifier.padding(8.dp))
-            CityDescription(city.description)
+
+            VisitButton(url = city.events, modifier = Modifier.fillMaxWidth()) {
+                Text("Events", style = MaterialTheme.typography.headlineMedium)
+            }
 
             Spacer(modifier = Modifier.height(16.dp))
             CityBestTimeImage(city.bestTime)
             Spacer(modifier = Modifier.height(16.dp))
             Text(city.bestTimeReason)
+            Spacer(modifier = Modifier.height(12.dp))
         }
     }
 }
@@ -160,36 +166,19 @@ private fun CityHeader(name: String, location: String, website: String) {
             Spacer(modifier = Modifier.width(4.dp))
             Text(text = location)
         }
-        CityWebsiteButton(website)
+        VisitButton(url = website) {
+            Text("Visit")
+        }
     }
 }
 
 @Composable
-private fun CityDescription(description: String) {
+private fun CityBestTimeImage(time: String) {
     Text(
-        text = "Description",
+        text = "When to visit?",
         style = MaterialTheme.typography.headlineMedium
     )
     Spacer(modifier = Modifier.height(12.dp))
-    Text(
-        text = description,
-        style = MaterialTheme.typography.bodyLarge,
-    )
-}
-
-@Composable
-private fun CityWebsiteButton(link: String) {
-    val uriHandler = LocalUriHandler.current
-    Button(
-        content = { Text("Visit") },
-        onClick = { uriHandler.openUri(link) },
-        modifier = Modifier.width(80.dp)
-    )
-}
-
-// TODO: Extract seasons out to enum
-@Composable
-private fun CityBestTimeImage(time: String) {
     Box(contentAlignment = Alignment.CenterStart) {
         Card(shape = RoundedCornerShape(16.dp)) {
             Image(
@@ -199,11 +188,12 @@ private fun CityBestTimeImage(time: String) {
                 modifier = Modifier.height(120.dp)
             )
         }
-//        image source
+
+//        image sources
 //        https://wallhaven.cc/w/yj32mx
 //        https://wallhaven.cc/w/4lr66r
         Text(
-            "   Summer",
+            "   $time",
             color = Color.White,
             style = MaterialTheme.typography.headlineMedium,
         )

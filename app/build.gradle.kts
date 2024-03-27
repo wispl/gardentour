@@ -67,6 +67,7 @@ dependencies {
 
     implementation("com.google.dagger:hilt-android:2.48")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation("androidx.browser:browser:1.8.0")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
 
     implementation("androidx.room:room-runtime:2.6.1")

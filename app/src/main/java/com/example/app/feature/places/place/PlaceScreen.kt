@@ -14,7 +14,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -28,6 +27,7 @@ import androidx.navigation.navArgument
 import coil.compose.AsyncImage
 import com.example.app.components.BackNavTopBar
 import com.example.app.components.PlaceTypes
+import com.example.app.components.VisitButton
 import com.example.app.model.Place
 
 const val PLACE_ID = "placeId"
@@ -110,14 +110,21 @@ private fun PlaceInformation(place: Place) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 // Use weight to prioritize size calculation of Button first
-                PlaceName(place.name, modifier = Modifier.weight(1f))
-                PlaceWebsiteButton(place.website)
+                Text(
+                    text = place.name,
+                    style = MaterialTheme.typography.headlineMedium,
+                    modifier = Modifier.weight(1f)
+                )
+                VisitButton(url = place.website) { Text("Visit") }
             }
             Spacer(modifier = Modifier.padding(8.dp))
             PlaceTypes(place.types)
 
             Spacer(modifier = Modifier.padding(8.dp))
-            PlaceDescription(place.description)
+            Text(
+                text = place.description,
+                style = MaterialTheme.typography.bodyLarge
+            )
 
             Spacer(modifier = Modifier.height(8.dp))
             PlaceDetails(place.hours, place.price)
@@ -167,29 +174,6 @@ private fun PlaceAddress(address: String, city: String) {
             )
         }
     }
-}
-
-@Composable
-private fun PlaceName(name: String, modifier: Modifier) {
-    Text(
-        text = name,
-        style = MaterialTheme.typography.headlineMedium,
-        modifier = modifier
-    )
-}
-
-@Composable
-private fun PlaceWebsiteButton(link: String) {
-    val uriHandler = LocalUriHandler.current
-    Button(
-        content = { Text("Visit") },
-        onClick = { uriHandler.openUri(link) }
-    )
-}
-
-@Composable
-private fun PlaceDescription(description: String) {
-    Text(text = description, style = MaterialTheme.typography.bodyLarge)
 }
 
 @Composable
