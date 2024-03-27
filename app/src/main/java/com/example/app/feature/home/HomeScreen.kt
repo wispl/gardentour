@@ -76,7 +76,11 @@ private fun HomeScreen(
         Spacer(modifier = Modifier.height(8.dp))
 
         Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-            Text("You can view some of you saved places and cities here, a more complete view is shown in the views tab.", style = MaterialTheme.typography.bodyMedium, textAlign = TextAlign.Center)
+            Text(
+                "You can view some of you saved places and cities here, a more complete view is shown in the views tab.",
+                style = MaterialTheme.typography.bodyMedium,
+                textAlign = TextAlign.Center
+            )
         }
 
         if (savedPlaces.isNotEmpty()) {
@@ -144,7 +148,7 @@ private fun RandomPlacesPager(places: List<Place>) {
             ) {
                 Column(
                     modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment =Alignment.CenterHorizontally
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     ImageHeader(places[page].image)
                     Text(
@@ -162,7 +166,8 @@ private fun RandomPlacesPager(places: List<Place>) {
             ImageHeader(
                 places[page].image,
                 Modifier.graphicsLayer {
-                    val pageOffset = ((pagerState.currentPage - page) + pagerState.currentPageOffsetFraction).absoluteValue
+                    val pageOffset =
+                        ((pagerState.currentPage - page) + pagerState.currentPageOffsetFraction).absoluteValue
                     alpha = lerp(
                         start = 0.5f,
                         stop = 1.0f,
