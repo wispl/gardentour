@@ -16,8 +16,7 @@ fun VisitButton(
     modifier: Modifier = Modifier,
     url: String,
     text: @Composable () -> Unit
-)
- {
+) {
     val context = LocalContext.current
     val color = MaterialTheme.colorScheme.background.toArgb()
     Button(
@@ -27,7 +26,7 @@ fun VisitButton(
     )
 }
 
-fun launchChromeTab(context: Context, uri: Uri, color: Int ) {
+fun launchChromeTab(context: Context, uri: Uri, color: Int) {
     val tabColor = CustomTabColorSchemeParams.Builder()
         .setToolbarColor(color).build()
     val tabsIntent = CustomTabsIntent.Builder()
