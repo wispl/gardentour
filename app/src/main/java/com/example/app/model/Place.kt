@@ -7,7 +7,8 @@ enum class PlaceType {
     Food,
     Landmark,
     Zoo,
-    Hotel
+    Hotel,
+    Nature
 }
 
 data class Place(

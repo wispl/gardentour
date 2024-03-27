@@ -24,5 +24,18 @@
     "events": "",
     "more_info": "https://www.caperesorts.com/",
     "info_credit": "oceancity.com,travel.usnews.com"
+  },
+  {
+    "name": "Wildwood",
+    "description": "The Wildwoods is a great resort town for those who want a trip filled with activity and fun. Provided are various water parks and water slides as well as regular rides and tramcars. Visitors can also take advantage of the beach: surfing boogie boarding or jetskiing are all possible",
+    "location": "08260",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Jibreel23_Wildwood_Beach_Ball_Sign.jpg/1280px-Jibreel23_Wildwood_Beach_Ball_Sign.jpg",
+    "image_credit": "Jibreel23,wikimedia.org,https://en.wikipedia.org/wiki/The_Wildwoods#/media/File:Jibreel23_Wildwood_Beach_Ball_Sign.jpg",
+    "website": "https://wildwoodsnj.com",
+    "best_time": "Summer",
+    "best_time_reason": "The summer weather is perfect for enjoying the various water activities and attracts many visitors.",
+    "events": "Wildwoods has many events, over 160 festivals and events, many of which are free, such as\nInternational Kite Festival\nWildwoods’ Baby Parade\nClassic Car Shows\nSee more here: https://wildwoodsnj.com/so-much-to-do/festivals-and-events/",
+    "more_info": "Fun",
+    "info_credit": "https://wildwoodsnj.com,travel.usnews.com"
   }
 ]

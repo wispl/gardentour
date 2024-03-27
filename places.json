@@ -37,7 +37,7 @@
   },
   {
     "name": "Cape May Lighthouse",
-    "description": "Built in 1859 and opened to the public in 1988, the Cape May Lighthouse has welcomed more than 2.5 million visitors to date. Travelers who scale the 199 steps to the top of the lighthouse will be rewarded with panoramic oceanfront views. Those who would rather stay on solid ground can enjoy the Oil House, which contains a visitor center and a museum shop with souvenirs.",
+    "description": "Built in 1859 and opened to the public in 1988, the Cape May Lighthouse challenges travelers to scale 199 steps to reach the top of the lighthouse. Waiting for them is a glorious and panoramic oceanfront view. The ones who prefer to remain on the ground can enjoy the Oil House, which contains a visitor center and a museum shop with souvenirs.",
     "address": "215 Lighthouse Ave",
     "city": "Cape May City",
     "image": "https://images.unsplash.com/photo-1591726015387-bbfd29215bf5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -49,7 +49,7 @@
   },
   {
     "name": "Emlen Physick Estate",
-    "description": "Take a step back in time at the Emlen Physick Estate, the only Victorian-era house museum in New Jersey. Completed in 1879, the house belonged to a wealthy Philadelphia family, the Physicks. Take a step back in time at the Emlen Physick Estate, the only Victorian-era house museum in New Jersey. Completed in 1879, the house belonged to a wealthy Philadelphia family, the Physicks.",
+    "description": "Visit the Emlen Physick Estate, the only Victorian-era house museum in New Jersey, for a one of a kind experience. Completed in 1879, the house belonged to a wealthy Philadelphia family, the Physicks. Tour the vast estate normally, experiencing its unique history, or if you are in for a fright, participate in their ghost tours instead. Boo!.",
     "address": "1048 Washington St",
     "city": "Cape May City",
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Emlen-physick-estate.jpg/640px-Emlen-physick-estate.jpg",
@@ -61,7 +61,7 @@
   },
   {
     "name": "Naval Air Station Wildwood Aviation Museum",
-    "description": "The Naval Air Station (NAS) Wildwood Aviation Museum is located inside a former World War II hangar that dates back to 1943. It was originally used as a training facility for dive bombers to practice takeoffs, landings, night flying and target practice. After the war, the hanger was used for incoming and outgoing charter and commuter flights until about 1990, when it began falling into disrepair. Today, the NAS Wildwood Aviation Museum boasts a variety of historic planes, helicopters and WWII memorabilia. Travelers can view medevac helicopters, a large collection of military jets and more than 20 propeller aircraft, in addition to other automobiles and 1940s artifacts like retro soda machines. ",
+    "description": "The Naval Air Station (NAS) Wildwood Aviation Museum is located inside a former World War II hangar that dates back to 1943. It has a long history, originally used as a training facility for various aerial missions, then used for incoming and outgoing charter and commuter flights 1990, before it started to break down. Today, the NAS Wildwood Aviation Museum boasts a variety of historic planes, helicopters and WWII memorabilia. ",
     "address": "500 Forrestal Road",
     "city": "Cape May City",
     "image": "https://i0.wp.com/www.capemay.com/play/wp-content/uploads/2015/11/NASW-at-Dusk.jpg?fit=3000%2C1272",
@@ -78,7 +78,7 @@
     "city": "Cape May City",
     "image": "https://i0.wp.com/www.capemay.com/play/wp-content/uploads/2020/07/50119707842_c506da134e_c.jpg?w=799&ssl=1",
     "image_credit": "capemay.com",
-    "types": "Museum",
+    "types": "Landmark",
     "website": "https://capemaymac.org/experience/world-war-ii-tower/",
     "price": "Adults: $6,Children: $3",
     "hours": "10 AM - 4 PM"
@@ -150,7 +150,7 @@
     "city": "Ocean City",
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Corson%E2%80%99s_Inlet_and_Russ_Chatin_Bridge.jpg/1280px-Corson%E2%80%99s_Inlet_and_Russ_Chatin_Bridge.jpg",
     "image_credit": "Hurricanehink,wikimedia.org",
-    "types": "Fun",
+    "types": "Fun,Nature",
     "website": "https://www.state.nj.us/dep/parksandforests/parks/corsons.html",
     "price": "Free",
     "hours": "Always Open"
@@ -225,11 +225,11 @@
     "types": "Food",
     "website": "https://capemayoceanclubhotel.com/seasalt-restaurant/",
     "price": "See Menu",
-    "hours": "Open Daily Monday-Sunday until October 21\n\nBreakfast 8am-11:30am\nLunch starts at 12pm-4pm\nDinner 5pm-9:00pm\nTiki Ten35 outdoor bar opens 11am (Tiki food menu 12pm-4pm & 5-close)\nSeaSalt indoor bar 5pm-9:00pm\nStarting October 22 – Open Friday-Sunday\n\nFridays – Dinner 5pm-9:00pm | SeaSalt indoor bar 5pm-9:00pm\nSaturday\nBreakfast 8am-11:30am | Lunch starting at 12pm | Dinner 5pm-9:00pm | SeaSalt indoor bar 5pm-9:00pm\nSunday – Breakfast 8am-11:30am"
+    "hours": "Open Daily Monday-Sunday until October 21, 8 AM - 9 PM "
   },
   {
     "name": "Tisha's",
-    "description": "SeaSalt Restaurant boasts a distinctive fine-dining experience without the fuss: unparalleled beachfront setting, vibrant energy, an impressive menu with something for everyone, along with signature cocktails, a diverse wine list, and truly genuine hospitality.",
+    "description": "Enjoy fine Italian, New-American and Seafood at this restaurant. Patios are available for customers and even pets for an enjoyable experience in the summer months",
     "address": "322 Washington St",
     "city": "Cape May City",
     "image": "https://i0.wp.com/www.capemay.com/restaurants/wp/wp-content/uploads/SeaSaltJuly201713.jpg",
@@ -238,5 +238,149 @@
     "website": "https://tishasfinedining.com",
     "price": "See Menu (ranges $20-$25)",
     "hours": "11:00 AM - 2:15 PM"
+  },
+  {
+    "name": "Atlantic Parasail",
+    "description": "Enjoy parasailing at New Jersey's Originial Parasail Company. Experience the exhilarating thrill of zipping through the sky while peering down at the clear waters of Wildwood",
+    "address": "1001 Ocean Drive",
+    "city": "Wildwood",
+    "image": "https://wildwoodsnj.com/wp-content/uploads/2019/04/1.jpg",
+    "image_credit": "https://wildwoodsnj.com",
+    "types": "Fun",
+    "website": "https://atlanticparasail.com",
+    "price": "Each parasailor: $82\nObservers (not flying): $49\nPhoto package: $35\nGo pro aerial adventure cam: $35",
+    "hours": "Daily from Memorial Day through Labor Day, 8 AM until sunset"
+  },
+  {
+    "name": "Bobby Dee’s Arcade",
+    "description": "Boasting a wide variety of games, prizes, and merchandise, Bobby Dee's Arcade can serve as an exciting summer experience at WildWood. You can even ask for a special prize!",
+    "address": "3600 Boardwalk",
+    "city": "Wildwood",
+    "image": "https://wildwoodsnj.com/wp-content/uploads/2019/04/1-1.jpg",
+    "image_credit": "https://wildwoodsnj.com",
+    "types": "Fun",
+    "website": "https://www.facebook.com/bobbydeesarcade/timeline",
+    "price": "See website",
+    "hours": "See website"
+  },
+  {
+    "name": "Cape Sea Excursions",
+    "description": "Star Fleet’s Deep Sea Fishing & Dolphin-Whale Watching Center, serving southern New Jersey’s Cape May, Wildwood and Wildwood Crest with first class deep sea fishing trips and exciting dolphin watching and whale watching tours, and our sunset dinner cruises around Cape May Island. South Jersey is one of the best places on earth to observe wild dolphins! The Starlight Fleet offers a great opportunity for students to explore our oceans, hands-on!",
+    "address": "6200 Park Boulevard",
+    "city": "Wildwood",
+    "image": "https://wildwoodsnj.com/wp-content/uploads/2020/01/Capture-1.jpg",
+    "image_credit": "https://wildwoodsnj.com",
+    "types": "Fun,Nature",
+    "website": "http://www.capeseaexcursions.com/",
+    "price": "See website",
+    "hours": "See website"
+  },
+  {
+    "name": "Cape Square Entertainment",
+    "description": "Boasting a movie theatre, bowling alley, golf simulator, arcade, restaurants, bars, the Cape Square Entertainment is an excellent place to view your favorite movies! Afterwards you can grab a quick bite or enjoy bowling and gaming at the various facilities.",
+    "address": "3801 US-9 S",
+    "city": "Wildwood",
+    "image": "https://wildwoodsnj.com/wp-content/uploads/2024/02/406981728_17888017361959352_5144911231255486298_n.jpg",
+    "image_credit": "https://wildwoodsnj.com",
+    "types": "Fun",
+    "website": "http://www.squaretheatres.com/",
+    "price": "See website",
+    "hours": "See website"
+  },
+  {
+    "name": "Doo Wop Museum and Back to the ’50s Neon Night Tours",
+    "description": "Brimming with cool artifacts, fun memories, fascinating history and bright neon lights, the Doo Wop Experience Museum and Neon Sign Garden is a celebration of architecture, design, music, pop culture and everything else that made Wildwood famous in its heyday of the 1950’s and 1960’s. Tour leaves from the Museum and then by foot, car or guided bus tour view the fun and frivolous origins of postwar 1950’s American in the Wildwoods",
+    "address": "4500 Ocean Avenue",
+    "city": "Wildwood",
+    "image": "https://wildwoodsnj.com/wp-content/uploads/2019/11/DooWopMusuem.jpg",
+    "image_credit": "https://wildwoodsnj.com",
+    "types": "Fun,Museum",
+    "website": "http://www.doowopusa.org/",
+    "price": "Bus Tour\nAdults: $20\nChildren: $10",
+    "hours": "June 20th-Septmeber 5th\nTuesday, Thursday, Sunday\n4pm-9:30pm\n\nFriday & Saturday\n6:00pm-9:30pm\nSpring & Fall\nFriday & Saturday\n6:00pm-9:30pm\n"
+  },
+  {
+    "name": "Morey’s Piers & Beachfront Waterparks",
+    "description": "Morey’s Piers is a classic seaside amusement park that’s been family owned since 1969. Voted one of the top three seaside amusement parks in the world by Amusement Today, Morey’s Piers has more than 100 rides and attractions spanning 18 acres along six beach blocks and includes three amusement piers and two beachfront water parks.",
+    "address": "3501 Boardwalk",
+    "city": "Wildwood",
+    "image": "https://wildwoodsnj.com/wp-content/uploads/2019/04/Moreys_night.jpg",
+    "image_credit": "https://wildwoodsnj.com",
+    "types": "Fun",
+    "website": "https://www.moreyspiers.com",
+    "price": "Prices vary, see website",
+    "hours": "See website"
+  },
+  {
+    "name": "Monster Truck Rides on the Beach",
+    "description": "The only monster truck ride on the east coast. Come enjoy an unique experience aboard this prowling machine",
+    "address": "4101 Boardwalk",
+    "city": "Wildwood",
+    "image": "https://wildwoodsnj.com/wp-content/uploads/2019/08/1.jpg",
+    "image_credit": "https://wildwoodsnj.com",
+    "types": "Fun",
+    "website": "https://www.facebook.com/WildwoodMotorEvents",
+    "price": "$13 each ride",
+    "hours": "See website"
+  },
+  {
+    "name": "Dark Star Pirate Cruises",
+    "description": "The Dark Star is an authentic Pirate themed cruise and is looking for Buccaneers young and ol’ to sign on with the crew and ye’ll find a fortune of tales, tunes and treasures. Come sail the 7 seas on this exciting tour!",
+    "address": "6200 Park Blvd",
+    "city": "Wildwood",
+    "image": "https://wildwoodsnj.com/wp-content/uploads/2019/04/Capture-5.jpg",
+    "image_credit": "https://wildwoodsnj.com",
+    "types": "Fun",
+    "website": "http://www.darkstarpiratecruises.com/",
+    "price": "See website",
+    "hours": "See website "
+  },
+  {
+    "name": "A & LP Foods",
+    "description": "Stuff yourself with specialty Italian pizza, pasta, steaks, hoagies, and imported products.",
+    "address": "101 East 15th Avenue",
+    "city": "Wildwood",
+    "image": "https://media-cdn.tripadvisor.com/media/photo-s/0c/17/2f/18/a-lp-foods.jpg",
+    "image_credit": "https://www.tripadvisor.co/Restaurant_Review-g46686-d7155174-Reviews-A_LP_Foods-North_Wildwood_Cape_May_County_New_Jersey.html#photos;aggregationId=&albumid=101&filter=7&ff=202845976",
+    "types": "Food",
+    "website": "http://www.alpfoods.com/",
+    "price": "See menu",
+    "hours": "See website"
+  },
+  {
+    "name": "A Little Cafe",
+    "description": "A Little Cafe which offers sandwiches, salads, “from scratch” soups and baked goods, along with a full service coffee bar. There also are vegan and gluten free options.",
+    "address": "8700 New Jersey Avenue",
+    "city": "Wildwood",
+    "image": "https://wildwoodsnj.com/wp-content/uploads/2020/05/alittlecafe3.jpg",
+    "image_credit": "https://wildwoodsnj.com",
+    "types": "Food",
+    "website": "https://www.facebook.com/ALittleCafeWildwoodCrest/",
+    "price": "Price range: $10-18, some <$10",
+    "hours": "See website"
+  },
+  {
+    "name": "5 Mile Marketplace",
+    "description": "Shop for a variety of merchandise including beach gear, souvenirs, sundries, swim wear, clothing for the whole family, footwear, jewelry, hermit crabs and more!",
+    "address": "3500 Boardwalk",
+    "city": "Wildwood",
+    "image": "https://wildwoodsnj.com/wp-content/uploads/2019/04/1-56.jpg",
+    "image_credit": "https://wildwoodsnj.com",
+    "types": "Shopping",
+    "website": "https://www.facebook.com/5MileMarketplace/",
+    "price": "Price Vary",
+    "hours": "See website"
+  },
+  {
+    "name": "Beau Boutique",
+    "description": "A woman’s boutique located on the Wildwoods Boardwalk featuring clothing, jewelry, accessories and much more!",
+    "address": "3312 Boardwalk",
+    "city": "Wildwood",
+    "image": "https://wildwoodsnj.com/wp-content/uploads/2019/04/Capture-121.jpg",
+    "image_credit": "https://wildwoodsnj.com",
+    "types": "Shopping",
+    "website": "https://www.facebook.com/beauboutiquewwnj/",
+    "price": "Price Vary",
+    "hours": "See website"
   }
 ]
