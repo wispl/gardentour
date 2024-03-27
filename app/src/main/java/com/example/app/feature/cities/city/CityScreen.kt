@@ -29,7 +29,6 @@ import com.example.app.components.BackNavTopBar
 import com.example.app.components.Tag
 import com.example.app.components.VisitButton
 import com.example.app.model.City
-import com.example.app.model.Place
 
 const val CITY_ID = "cityId"
 const val CITY_ROUTE_BASE = "city"
@@ -161,7 +160,7 @@ private fun CityHeader(name: String, location: String, website: String) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Tag(enabled = true) {
+        Tag(enabled = true, modifier = Modifier.weight(1f)) {
             Icon(imageVector = Icons.Rounded.Place, contentDescription = "")
             Spacer(modifier = Modifier.width(4.dp))
             Text(text = location)
