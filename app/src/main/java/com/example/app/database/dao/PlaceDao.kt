@@ -8,12 +8,13 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PlaceDao {
+    // TODO: types filtering is currently broken
     @Query(
         value = """
         SELECT * FROM places
         WHERE 
             CASE WHEN :useNamesFilter
-                THEN name in (:namesFilter)
+                THEN name IN (:namesFilter)
                 ELSE 1
             END
         AND
