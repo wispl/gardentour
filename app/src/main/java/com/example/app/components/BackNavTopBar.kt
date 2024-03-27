@@ -20,7 +20,7 @@ fun BackNavTopBar(
             IconButton(onClick = onBackClick) {
                 Icon(
                     imageVector = Icons.Rounded.ArrowBack,
-                    contentDescription = ""
+                    contentDescription = "Navigate back"
                 )
             }
         },
@@ -28,7 +28,7 @@ fun BackNavTopBar(
             IconButton(onClick = onActionClick) {
                 Icon(
                     imageVector = imageVector,
-                    contentDescription = ""
+                    contentDescription = "Save"
                 )
             }
         }
