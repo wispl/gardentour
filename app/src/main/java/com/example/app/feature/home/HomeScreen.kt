@@ -7,10 +7,7 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -35,15 +32,22 @@ import kotlin.math.absoluteValue
 
 const val HOME_ROUTE = "home"
 
-fun NavGraphBuilder.homeScreen(onPlaceClick: (String) -> Unit) {
+fun NavGraphBuilder.homeScreen(
+    onPlaceClick: (String) -> Unit,
+    onCityClick: (String) -> Unit
+) {
     composable(route = HOME_ROUTE) {
-        HomeRoute(onPlaceClick)
+        HomeRoute(
+            onPlaceClick = onPlaceClick,
+            onCityClick = onCityClick
+        )
     }
 }
 
 @Composable
 private fun HomeRoute(
-    onClick: (String) -> Unit,
+    onPlaceClick: (String) -> Unit,
+    onCityClick: (String) -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val randomPlaces by viewModel.randomPlaces.collectAsStateWithLifecycle()
@@ -53,7 +57,8 @@ private fun HomeRoute(
         randomPlaces = randomPlaces,
         savedPlaces = savedPlaces,
         savedCities = savedCities,
-        onClick = onClick
+        onPlaceClick = onPlaceClick,
+        onCityClick = onCityClick
     )
 }
 
@@ -62,7 +67,8 @@ private fun HomeScreen(
     randomPlaces: List<Place>,
     savedPlaces: List<Place>,
     savedCities: List<City>,
-    onClick: (String) -> Unit,
+    onPlaceClick: (String) -> Unit,
+    onCityClick: (String) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -72,7 +78,7 @@ private fun HomeScreen(
     ) {
         HomeHeading()
         Spacer(modifier = Modifier.height(8.dp))
-        RandomPlacesPager(places = randomPlaces)
+        RandomPlacesPager(places = randomPlaces, onPlaceClick = onPlaceClick)
         Spacer(modifier = Modifier.height(8.dp))
 
         Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
@@ -89,7 +95,7 @@ private fun HomeScreen(
                 Spacer(modifier = Modifier.height(4.dp))
                 Row(modifier = Modifier.horizontalScroll(rememberScrollState())) {
                     savedPlaces.shuffled().take(4).forEach {
-                        ImageCard(it.image, onClick = { onClick(it.name) })
+                        ImageCard(it.image, onClick = { onPlaceClick(it.name) })
                     }
                 }
             }
@@ -103,7 +109,7 @@ private fun HomeScreen(
                 Spacer(modifier = Modifier.height(4.dp))
                 Row(modifier = Modifier.horizontalScroll(rememberScrollState())) {
                     savedCities.shuffled().take(4).forEach {
-                        ImageCard(it.image, onClick = { onClick(it.name) })
+                        ImageCard(it.image, onClick = { onCityClick(it.name) })
                     }
                 }
             }
@@ -132,9 +138,9 @@ private fun HomeHeading() {
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
-private fun RandomPlacesPager(places: List<Place>) {
+private fun RandomPlacesPager(places: List<Place>, onPlaceClick: (String) -> Unit) {
     val pagerState = rememberPagerState(initialPage = 2, pageCount = { places.size })
     HorizontalPager(
         state = pagerState,
@@ -145,6 +151,7 @@ private fun RandomPlacesPager(places: List<Place>) {
             Card(
                 modifier = Modifier.height(240.dp).fillMaxHeight(),
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                onClick = { onPlaceClick(places[page].name) },
             ) {
                 Column(
                     modifier = Modifier.fillMaxSize(),

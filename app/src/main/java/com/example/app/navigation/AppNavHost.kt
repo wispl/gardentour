@@ -24,7 +24,10 @@ fun AppNavHost(
         startDestination = startDestination,
         modifier = modifier
     ) {
-        homeScreen(navController::navigateToPlace)
+        homeScreen(
+            onPlaceClick = navController::navigateToPlace,
+            onCityClick = navController::navigateToCity,
+        )
         placesScreen(
             onPlaceClick = navController::navigateToPlace,
             onBackClick = navController::navigateUp
