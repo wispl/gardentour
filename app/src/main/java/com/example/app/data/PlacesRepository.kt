@@ -14,5 +14,5 @@ interface PlacesRepository {
     fun getSavedPlaces(): Flow<List<Place>>
     fun getPlaces(filterQuery: PlaceFilterQuery): Flow<List<Place>>
     fun getPlace(name: String): Flow<Place>
-    fun getRandomPlace(): Flow<Place>
+    fun getRandomPlaces(): Flow<List<Place>>
 }

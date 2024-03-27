@@ -40,6 +40,6 @@ interface PlaceDao {
     @Query(value = "SELECT * FROM places WHERE name = :name")
     fun getPlace(name: String): Flow<PlaceEntity>
 
-    @Query(value = "SELECT * FROM places ORDER BY RANDOM() LIMIT 1")
-    fun getRandomPlace(): Flow<PlaceEntity>
+    @Query(value = "SELECT * FROM places ORDER BY RANDOM() LIMIT 6")
+    fun getRandomPlaces(): Flow<List<PlaceEntity>>
 }

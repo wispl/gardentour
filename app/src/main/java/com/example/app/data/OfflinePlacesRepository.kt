@@ -51,7 +51,7 @@ class OfflinePlacesRepository @Inject constructor(
         return placeDao.getPlace(name).map(PlaceEntity::toExternalModel)
     }
 
-    override fun getRandomPlace(): Flow<Place> {
-        return placeDao.getRandomPlace().map(PlaceEntity::toExternalModel)
+    override fun getRandomPlaces(): Flow<List<Place>> {
+        return placeDao.getRandomPlaces().map{ it.map(PlaceEntity::toExternalModel)}
     }
 }
