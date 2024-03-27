@@ -8,7 +8,7 @@
     "website": "https://www.capemay.com/",
     "best_time": "Summer",
     "best_time_reason": "The summer months attract tons of visitors because the water is warm enough to swim and there are plenty of things to do",
-    "events": "Cape May Spring Festival (May),Cape May Restaurant Week (June),The MidAtlantic (August),Food and Wine Celebration (September),Cape May Fall Festival (October),Victorian Weekend (October),Cape May Restaurant Weekend (October-November),Christmas Candlelight House Tour (December),Winter Wonderland at Congress Hall (December),Easter Parade (March/April)",
+    "events": "https://www.capemay.com/calendar/",
     "more_info": "https://www.caperesorts.com/",
     "info_credit": "capemay.com,travel.usnews.com"
   },
@@ -21,7 +21,7 @@
     "website": "https://www.oceancity.com/",
     "best_time": "Summer",
     "best_time_reason": "Average high temperatures range from 67 to 81 degrees during the peak tourist season, providing the perfect environment for soaking up the sun and strolling on the boardwalk. ",
-    "events": "",
+    "events": "https://www.oceancity.com/events/",
     "more_info": "https://www.caperesorts.com/",
     "info_credit": "oceancity.com,travel.usnews.com"
   },
@@ -34,7 +34,7 @@
     "website": "https://wildwoodsnj.com",
     "best_time": "Summer",
     "best_time_reason": "The summer weather is perfect for enjoying the various water activities and attracts many visitors.",
-    "events": "Wildwoods has many events, over 160 festivals and events, many of which are free, such as\nInternational Kite Festival\nWildwoods’ Baby Parade\nClassic Car Shows\nSee more here: https://wildwoodsnj.com/so-much-to-do/festivals-and-events/",
+    "events": "https://wildwoodsnj.com/so-much-to-do/festivals-and-events/",
     "more_info": "Fun",
     "info_credit": "https://wildwoodsnj.com,travel.usnews.com"
   }
