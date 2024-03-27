@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">app</string>
+    <string name="app_name">GardenTour</string>
     <string name="home">Home</string>
     <string name="places">Places</string>
     <string name="search">Search</string>
