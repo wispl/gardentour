@@ -38,7 +38,9 @@ fun AppNavHost(
         )
         citiesScreen(
             onCityClick = navController::navigateToCity,
-            onBackClick = navController::navigateUp
+            onBackClick = navController::navigateUp,
+            onPlaceClick = navController::navigateToPlace
+
         )
         savedScreen(
             onPlaceClick = navController::navigateToPlace,

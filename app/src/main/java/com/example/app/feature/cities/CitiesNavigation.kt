@@ -8,13 +8,17 @@ const val CITIES_ROUTE = "cities"
 
 fun NavGraphBuilder.citiesScreen(
     onCityClick: (String) -> Unit,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onPlaceClick: (String) -> Unit
 ) {
     navigation(
         startDestination = CITIES_LIST_ROUTE,
         route = CITIES_ROUTE
     ) {
         citiesListScreen(onCityClick)
-        cityScreen(onBackClick)
+        cityScreen(
+            onBackClick = onBackClick,
+            onPlaceClick = onPlaceClick
+        )
     }
 }
