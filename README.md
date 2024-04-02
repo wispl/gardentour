@@ -62,6 +62,8 @@ Dependency injection via Hilt is used for, well, dependencies.
 ## Credits
 
 Information was from TravelNewsUS and respective websites of places and cities.
+
 Image credits can be found in the relevant places.json and cities.json files.
+
 NowInAndroid for reference.
 
