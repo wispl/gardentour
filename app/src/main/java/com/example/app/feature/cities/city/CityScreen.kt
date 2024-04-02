@@ -7,9 +7,12 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.*
+import androidx.compose.material.icons.rounded.Favorite
+import androidx.compose.material.icons.rounded.FavoriteBorder
+import androidx.compose.material.icons.rounded.Place
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,7 +29,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import coil.compose.AsyncImage
 import com.example.app.R
-import com.example.app.components.*
+import com.example.app.components.BackNavTopBar
+import com.example.app.components.ImageCard
+import com.example.app.components.Tag
+import com.example.app.components.VisitButton
 import com.example.app.model.City
 import com.example.app.model.Place
 
@@ -86,7 +92,10 @@ private fun CityScreen(
     Column(modifier = Modifier.fillMaxSize()) {
         when (cityUIState) {
             CityUIState.Error -> TODO()
-            CityUIState.Loading -> { CircularProgressIndicator() }
+            CityUIState.Loading -> {
+                CircularProgressIndicator()
+            }
+
             is CityUIState.Success -> {
                 val icon = if (cityUIState.isSaved) {
                     Icons.Rounded.Favorite
