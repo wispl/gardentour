@@ -3,8 +3,16 @@
 > [!CAUTION]
 > TSA submission project, not an actual app.
 
-<img src="pictures/home_screen.png" alt="Home Screen" width="25%"> <img src="pictures/place_screen.png" alt="Place Screen" width="25%"> <img src="pictures/place_detail.png" alt="Place Details" width="25%"> <img src="pictures/search_screen.png" alt="Search Screen" width="25%">
-<img src="pictures/cities_screen.png" alt="Cities Screen" width="25%"> <img src="pictures/city_detail.png" alt="City Details" width="25%"> <img src="pictures/city_detail2.png" alt="City Details 2" width="25%"> <img src="pictures/saved_screen.png" alt="Saved Screen" width="25%">
+<p align="center">
+    <img src="pictures/home_screen.png" alt="Home Screen" width="25%">
+    <img src="pictures/place_screen.png" alt="Place Screen" width="25%">
+    <img src="pictures/place_detail.png" alt="Place Details" width="25%">
+</p>
+<p align="center">
+    <img src="pictures/cities_screen.png" alt="Cities Screen" width="25%">
+    <img src="pictures/city_detail.png" alt="City Details" width="25%">
+    <img src="pictures/saved_screen.png" alt="Saved Screen" width="25%">
+</p>
 
 An android app written in Kotlin using Jetpack Compose to present NJ as a place for tourism.
 Code architecture and design heavily inspired by Google's NowInAndroid app.
